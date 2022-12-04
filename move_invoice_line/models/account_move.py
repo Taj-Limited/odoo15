@@ -6,3 +6,4 @@ class AccountMoveLine(models.Model):
     vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True)
     order_id = fields.Many2one('sale.order', string='Sale Order', index=True)
     route_id = fields.Many2one('sale.order.line', string='Route', index=True)
+    
