@@ -31,6 +31,7 @@
    'website': 'https://www.madfox.solutions',
     'depends': ['fleet', 'account'],
     'data': [
+    
         'views/account_move_views.xml',
     ],
     'qweb': [],
