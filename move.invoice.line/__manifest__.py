@@ -24,7 +24,7 @@
     'name': 'Taj Customizations',
     'version': '1.0',
     'summary': 'creates sale order from galagroup to fashion gala',
-    'category': 'Accounting/Accounting'',
+    'category': 'Accounting'',
     'author': 'Madfox',
     'maintainer': 'Madfox solutions',
     'company': 'Madfox solutions',
