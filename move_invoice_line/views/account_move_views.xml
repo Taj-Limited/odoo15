@@ -12,12 +12,7 @@
 				<field name='order_id' />
 				<field name='route_id' />
             </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']//field[@name='name']" position="after">
-               
-                <field name='vehicle_id' attrs="{'required': [('need_vehicle', '=', True), ('parent.move_type', 'in', ('in_invoice', 'in_refund'))], 'column_invisible': [('parent.move_type', 'not in', ('in_invoice', 'in_refund'))]}" />
-				<field name='order_id' />
-				<field name='route_id' />
-			</xpath>
+
         </field>
     </record>
 
