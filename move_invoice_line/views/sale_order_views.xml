@@ -12,6 +12,7 @@
 
                     <field name='file_name' />
                     <field name='container_num' />
+                     <field name='vehicle_id' />
 
             </xpath>
 
