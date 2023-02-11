@@ -6,7 +6,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='order_details']" position="after">
+            <xpath expr="//page[@name='order_lines']//field[@name='product_uom_category_id']" position="after">
                  <group name="trip_details">
                     <field name="analytic_account_id" context="{'default_partner_id':partner_invoice_id, 'default_name':name}"  groups="analytic.group_analytic_accounting" force_save="1"/>
 
@@ -19,18 +19,5 @@
     </record>
 
    
-
-    <record id="view_sale_order_tree_fleet_madfox" model="ir.ui.view">
-        <field name="name">sale.order.tree</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position='after'>
-                <field name="file_name" optional='hidden'/>
-				<field name="container_num" optional='hidden'/>
-
-            </xpath>
-        </field>
-    </record>
 
 </odoo>
