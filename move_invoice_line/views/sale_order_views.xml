@@ -7,12 +7,12 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
-                 <group name="trip_details">
+
                     <field name="analytic_account_id"   groups="analytic.group_analytic_accounting" force_save="1"/>
 
                     <field name='file_name' />
                     <field name='container_num' />
-                 </group>
+
             </xpath>
 
         </field>
