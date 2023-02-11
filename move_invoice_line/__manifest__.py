@@ -32,7 +32,7 @@
     'depends': ['base','sale','fleet', 'account'],
     'data': [
         'views/account_move_views.xml',
-        #'views/sale_order_views.xml',
+        'views/sale_order_views.xml',
         ],
     'qweb': [],
     'license': 'AGPL-3',
