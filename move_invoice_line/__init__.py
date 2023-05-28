@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 #############################################################################
 #
 #    Madfox Solutions
 #
 #    Copyright (C) 2021-TODAY Madfox Solutions(<https://www.madfox.solutions>).
-#    Author: Mohamad MOaiad Bashiti (moaiad@madfox.solutions)
+#    Author: Layla Bahloul
 #
 #    You can modify it under the terms of the GNU AFFERO
 #    GENERAL PUBLIC LICENSE (AGPL v3), Version 3.
@@ -18,7 +19,5 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-# odoo15
-new branch to handel taj on odoo 15 development
 
-
+from . import models

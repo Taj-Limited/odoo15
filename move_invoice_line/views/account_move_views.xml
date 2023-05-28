@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="view_move_form_madfox" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']//field[@name='name']" position="after">
+				<field name='order_id' />
+				<field name='route_id' />
+                <field name="analytic_account_id"   groups="analytic.group_analytic_accounting" force_save="1"/>
+                <field name='file_name' />
+                <field name='container_num' />
+                 <field name='consignee' />
+                 <field name='size' />
+                 <field name='weight' />
+                <field name='srn' />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//field[@name='vehicle_id']" position="attributes">
+                    <attribute name="attrs">{'required': [('need_vehicle', '=', True), ('parent.move_type', 'in', ('in_invoice', 'in_refund'))]}</attribute>
+
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="view_move_line_tree_fleet_madfox" model="ir.ui.view">
+        <field name="name">view.move.line.tree.fleet</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position='after'>
+                <field name="vehicle_id" optional='hidden'/>
+				<field name="order_id" optional='hidden'/>
+				<field name="route_id" optional='hidden'/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
