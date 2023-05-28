@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+    <record id="report_invoice_document_inherit" model="ir.ui.view">
+        <field name="name">taj_report_invoice_document</field>
+        <field name="inherit_id" ref="account.report_invoice_document"/>
+        <field name="arch" type="xml">
+
+                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
+            
+					<th>Amount TSH</th>
+            
+				</xpath>
+				<xpath expr="//t[@name='account_invoice_line_accountable']/td[1]" position="after">
+					<td >
+					 <span t-field="line.credit"/>
+					 
+					</td>
+				</xpath>
+            <xpath expr="//p[@name='payment_term']" position="after">
+                <p >Account Name : TAJ TRUCKING LIMITED</p>
+                <p>Account No. USD : 05233990011 </p>
+                <p >Swift Transfer : EUAFTZTZ</p>
+                 <p >Bank Name : BANK OF AFRICA TANZANIA</p>
+                  <p >Bank Address : NDC DEVELOPMENT HOUSE, OHIO STREET/KIVUKONI FRONT</p>
+
+            </xpath>
+          
+            </field>
+      </record>
+    </data>
+</odoo>
