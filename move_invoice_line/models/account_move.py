@@ -23,3 +23,4 @@ class AccountMoveLine(models.Model):
         self.weight = self.route_id.weight
         self.size = self.route_id.size
         self.srn = self.route_id.srn
+        self.vehicle_id = self.route_id.vehicle_id
