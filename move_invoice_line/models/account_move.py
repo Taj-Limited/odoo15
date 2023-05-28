@@ -14,3 +14,14 @@ class AccountMoveLine(models.Model):
     weight = fields.Char(require=False, string='WEIGHT')
     consignee = fields.Char(require=False, string='CONSIGNEE')
     srn = fields.Char(require=False, string='SHIPMENT REFERENCE NUMBER')
+
+    @api.onchange('route_id')
+    def _onchange_route_id(self):
+        for line in self:
+            line.container_num = line.route_id.container_num
+            line.file_name = line.route_id.file_name
+            line.consignee = line.route_id.consignee
+            line.weight = line.route_id.weight
+            line.size = line.route_id.size
+            line.srn = line.route_id.srn
+        return True
