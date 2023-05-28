@@ -17,6 +17,14 @@
 					 
 					</td>
 				</xpath>
+            <xpath expr="//p[@name='payment_term']" position="after">
+                <p >Account Name : TAJ TRUCKING LIMITED</p>
+                <p>Account No. USD : 05233990011 </p>
+                <p >Swift Transfer : EUAFTZTZ</p>
+                 <p >Bank Name : BANK OF AFRICA TANZANIA</p>
+                  <p >Bank Address : NDC DEVELOPMENT HOUSE, OHIO STREET/KIVUKONI FRONT</p>
+
+            </xpath>
           
             </field>
       </record>
