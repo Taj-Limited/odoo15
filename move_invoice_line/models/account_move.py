@@ -17,11 +17,9 @@ class AccountMoveLine(models.Model):
 
     @api.onchange('route_id')
     def _onchange_route_id(self):
-        for line in self:
-            line.container_num = line.route_id.container_num
-            line.file_name = line.route_id.file_name
-            line.consignee = line.route_id.consignee
-            line.weight = line.route_id.weight
-            line.size = line.route_id.size
-            line.srn = line.route_id.srn
-        return True
+        self.container_num = self.route_id.container_num
+        self.file_name = self.route_id.file_name
+        self.consignee = self.route_id.consignee
+        self.weight = self.route_id.weight
+        self.size = self.route_id.size
+        self.srn = self.route_id.srn
