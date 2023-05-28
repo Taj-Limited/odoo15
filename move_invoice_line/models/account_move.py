@@ -6,7 +6,7 @@ class AccountMoveLine(models.Model):
 
     vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True)
     order_id = fields.Many2one('sale.order', string='Sale Order', index=True)
-    route_id = fields.Many2one('sale.order.line', string='Route', index=True, domain=[("order_id", "in", order_id)])
+    route_id = fields.Many2one('sale.order.line', string='Route', index=True, domain=[("order_id", "=", order_id.id)])
     container_num = fields.Char(require=False, string='CONTAINER NUMBER')
     file_name = fields.Char(require=False, string='File Name')
     analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic Account')
