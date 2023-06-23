@@ -13,7 +13,7 @@
 				</xpath>
 				<xpath expr="//t[@name='account_invoice_line_accountable']/td[1]" position="after">
 					<td >
-					 <span t-if="line.order_id.vehicle_id" t-field="line.order_id.vehicle_id"/>
+					 <span t-if="line.vehicle_id" t-field="line.vehicle_id"/>
 
 					</td>
                     <td >
