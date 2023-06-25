@@ -33,7 +33,9 @@
     'data': [
         'views/account_move_views.xml',
         'views/sale_order_views.xml',
-        'views/invoice_views.xml',
+        'views/invoice_views.xml'
+        'views/inherit_partner.xml',
+
         ],
     'qweb': [],
     'license': 'AGPL-3',
