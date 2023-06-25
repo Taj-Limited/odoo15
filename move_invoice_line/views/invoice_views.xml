@@ -12,7 +12,7 @@
                     <div t-if="o.partner_id.vat" class="mt16">
                         <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
                         <t t-else="">TIN NO</t>: <span t-field="o.partner_id.vat"/></div>
-
+                     <div t-field="o.partner_id.vrn">VRN NO</t>: <span t-field="o.partner_id.vrn"/></div>
                 </t>
             </xpath>
 
