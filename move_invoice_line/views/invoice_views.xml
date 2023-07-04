@@ -16,7 +16,7 @@
                 </t>
             </xpath>
 
-            <xpath expr="//t[@t-set='address']"  position="attributes">
+            <xpath expr="//div[@name='address']"  position="attributes">
 
                     <attribute name="t-att-class">col-sm-12 ml-auto</attribute>
 
