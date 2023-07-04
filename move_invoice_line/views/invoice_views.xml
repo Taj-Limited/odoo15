@@ -18,12 +18,22 @@
 
                  <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
                      <th>Truck</th>
+                     <th> Container Number</th>
+                      <th>Consignee</th>
 					<th>Amount TSH</th>
             
 				</xpath>
 				<xpath expr="//t[@name='account_invoice_line_accountable']/td[1]" position="after">
 					<td >
 					 <span t-if="line.vehicle_id" t-field="line.vehicle_id"/>
+
+					</td>
+                    <td >
+					 <span t-if="line.vehicle_id" t-field="line.container_num"/>
+
+					</td>
+                    <td >
+					 <span t-if="line.vehicle_id" t-field="line.consignee"/>
 
 					</td>
                     <td >
