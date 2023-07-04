@@ -21,5 +21,5 @@ class SaleOrderLine(models.Model):
        add vehicle_id value to invoice line
         """
         values = super(SaleOrderLine, self)._prepare_invoice_line(**optional_values)
-        values.update({ 'vehicle_id': self.vehicle_id})
+        values.update({'vehicle_id': self.vehicle_id, 'container_num': self.container_num, 'consignee': self.consignee})
         return values
