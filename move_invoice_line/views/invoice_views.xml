@@ -15,12 +15,10 @@
                      <t t-if="o.partner_id.vrn">VRN NO: <span t-field="o.partner_id.vrn"/></t>
                 </t>
             </xpath>
+            <field name="address" position="attributes">
+                 <attribute name="class">col-sm-12 ml-auto</attribute>
+             </field>
 
-            <xpath expr="//div[@name='address']"  position="attributes">
-
-                    <attribute name="t-att-class">col-sm-12 ml-auto</attribute>
-
-            </xpath>
 
                  <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
                      <th>Truck</th>
