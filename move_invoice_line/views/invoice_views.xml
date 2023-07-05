@@ -72,6 +72,9 @@
                      <attribute name="style"> vertical-align: top;</attribute>
 				</xpath>
 
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[10]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
             <xpath expr="//p[@name='payment_term']" position="after">
                 <p >Account Name : TAJ TRUCKING LIMITED</p>
                 <p>Account No. USD : 05233990011 </p>
