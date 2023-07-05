@@ -45,35 +45,35 @@
 					</td>
 				</xpath>
             <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[2]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[3]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[4]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[5]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
             <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[6]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[7]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[8]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[9]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
 
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[10]" position="attributes">
-                     <attribute name="style"> vertical-align: top;</attribute>
+                     <attribute name="style"> vertical-align: top; text-align: center;</attribute>
 				</xpath>
             <xpath expr="//p[@name='payment_term']" position="after">
                 <p >Account Name : TAJ TRUCKING LIMITED</p>
