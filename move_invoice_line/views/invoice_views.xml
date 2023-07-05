@@ -16,9 +16,20 @@
                 </div>
             </xpath>
 
-                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th" position="attributes">
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="attributes">
                      <attribute name="style"> vertical-align: top;</attribute>
-
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[2]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[3]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[4]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[5]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
 				</xpath>
 
                  <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
