@@ -6,7 +6,8 @@
         <field name="inherit_id" ref="account.report_invoice_document"/>
         <field name="arch" type="xml">
             <xpath expr="//t[@t-set='address']"  position="replace">
-                 <div class="col-sm-12 ml-auto" >
+                <div  class="mt16"></div>
+                 <div class="col-sm-12 ml-auto" style="z-index: 9999;display: block;position: relative;color:black;">
                     <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
                     <div t-if="o.partner_id.vat" class="mt16">
                         <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
@@ -24,6 +25,7 @@
 					<th>Amount TSH</th>
             
 				</xpath>
+
 				<xpath expr="//t[@name='account_invoice_line_accountable']/td[1]" position="after">
 					<td >
 					 <span t-if="line.vehicle_id" t-field="line.vehicle_id"/>
@@ -41,6 +43,37 @@
 					 <span t-field="line.credit"/>
 					 
 					</td>
+				</xpath>
+            <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[2]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[3]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[4]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[5]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+            <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[6]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[7]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[8]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[9]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
+				</xpath>
+
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[10]" position="attributes">
+                     <attribute name="style"> vertical-align: top;</attribute>
 				</xpath>
             <xpath expr="//p[@name='payment_term']" position="after">
                 <p >Account Name : TAJ TRUCKING LIMITED</p>
