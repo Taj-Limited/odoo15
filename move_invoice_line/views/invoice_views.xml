@@ -6,10 +6,10 @@
         <field name="inherit_id" ref="account.report_invoice_document"/>
         <field name="arch" type="xml">
               <xpath expr="//div[@id='total']" position="replace">
-                    <t t-if="currency_id.id != 157">
+                    <t t-if="o.currency_id.id != 157">
                         <div>
                             <span > Total TSH</span>
-                            <field name="amount_total_signed"/>
+                            <field name="o.amount_total_signed"/>
                         </div>
 
 
@@ -36,7 +36,7 @@
 
 				<xpath expr="//t[@name='account_invoice_line_accountable']/td[1]" position="after">
 					<td >
-					 <span t-if="line.vehicle_id" t-field="line.vehicle_id"/>
+					 <span t-if="line.vehicle_id" t-field="line.vehicle_id.license_plate"/>
 
 					</td>
                     <td >
