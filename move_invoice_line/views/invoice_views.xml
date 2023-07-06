@@ -5,11 +5,11 @@
         <field name="name">taj_report_invoice_document</field>
         <field name="inherit_id" ref="account.report_invoice_document"/>
         <field name="arch" type="xml">
-              <xpath expr="//div[@id='total']" position="replace">
+              <xpath expr="//div[@id='total']" position="after">
                     <t t-if="o.currency_id.id != 157">
                         <div>
                             <span > Total TSH</span>
-                            <field name="o.amount_total_signed"/>
+                            <span t-field="o.amount_total_signed"/>
                         </div>
 
 
