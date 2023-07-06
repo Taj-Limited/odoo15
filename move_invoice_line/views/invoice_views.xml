@@ -16,7 +16,7 @@
                   </div>
 
               </xpath>
-             <xpath expr="//t[@t-set='tax_totals'] position='after'>
+             <xpath expr="//t[@t-set='tax_totals']" position='after'>
 
                       <tr>
                           <td> <span >  <strong>Total TSH </strong></span></td>
