@@ -5,18 +5,25 @@
         <field name="name">taj_report_invoice_document</field>
         <field name="inherit_id" ref="account.report_invoice_document"/>
         <field name="arch" type="xml">
-            <xpath expr="//t[@t-set='address']"  position="replace">
-                <div  class="mt16"></div>
-                 <div class="col-sm-12 ml-auto" style="z-index: 9999;display: block;position: relative;color:black;">
-                    <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
-                    <div t-if="o.partner_id.vat" class="mt16">
-                        <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
-                        <t t-else="">TIN NO</t>: <span t-field="o.partner_id.vat"/></div>
-                     <t t-if="o.partner_id.vrn">VRN NO: <span t-field="o.partner_id.vrn"/></t>
-                </div>
-            </xpath>
 
+             <xpath expr="//t[@t-set='tax_totals']" position='after'>
 
+                      <tr>
+                          <td> <span >  <strong>Total TSH </strong></span></td>
+                          <td class="text-right">  <span t-field="o.amount_total_signed"/></td>
+                      </tr>
+
+              </xpath>
+                <xpath expr="//t[@t-set='address']"  position="replace">
+                    <div  class="mt16"></div>
+                     <div class="col-sm-12 ml-auto" style="z-index: 9999;display: block;position: relative;color:black;">
+                        <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                        <div t-if="o.partner_id.vat" class="mt16">
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">TIN NO</t>: <span t-field="o.partner_id.vat"/></div>
+                         <t t-if="o.partner_id.vrn">VRN NO: <span t-field="o.partner_id.vrn"/></t>
+                    </div>
+                </xpath>
 
                  <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
                      <th>Truck</th>
@@ -28,7 +35,7 @@
 
 				<xpath expr="//t[@name='account_invoice_line_accountable']/td[1]" position="after">
 					<td >
-					 <span t-if="line.vehicle_id" t-field="line.vehicle_id"/>
+					 <span t-if="line.vehicle_id" t-field="line.vehicle_id.license_plate"/>
 
 					</td>
                     <td >
