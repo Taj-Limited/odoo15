@@ -29,7 +29,7 @@
                      <th>Truck</th>
                      <th> Container Number</th>
                       <th>Consignee</th>
-					<th>Amount TSH</th>
+
             
 				</xpath>
 
@@ -46,10 +46,7 @@
 					 <span t-if="line.vehicle_id" t-field="line.consignee"/>
 
 					</td>
-                    <td >
-					 <span t-field="line.credit"/>
-					 
-					</td>
+
 				</xpath>
             <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="attributes">
                      <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
