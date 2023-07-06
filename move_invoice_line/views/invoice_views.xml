@@ -5,9 +5,9 @@
         <field name="name">taj_report_invoice_document</field>
         <field name="inherit_id" ref="account.report_invoice_document"/>
         <field name="arch" type="xml">
-              <xpath expr="//div[@id='total']/table/tr[1]" position="after">
+              <xpath expr="//div[@id='total']/div/table/tr[1]" position="after">
                   <tr>
-                      <td> <span > Total TSH</span></td>
+                      <td> <span >  <strong>Total TSH </strong></span></td>
                       <td>  <span t-field="o.amount_total_signed"/></td>
                   </tr>
 
