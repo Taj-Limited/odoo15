@@ -6,10 +6,10 @@
         <field name="inherit_id" ref="account.report_invoice_document"/>
         <field name="arch" type="xml">
                 <xpath expr="//table[@name='invoice_line_table']" position='before'>
-                    <table>
+                    <table class="col-sm-7 col-md-6 ml-auto">
                       <tr>
-                          <td> <span >  <strong>Total TSH </strong></span></td>
-                          <td class="text-right"> Exchange Rate: <span t-set="exchange_rate" t-value="'{0:,.2f}'.format(o.amount_total_signed/o.amount_total)"/></td>
+                          <td> <span >  <strong>Exchange Rate: </strong></span></td>
+                          <td class="text-right">  <span t-set="exchange_rate"  t-esc="'{0:,.2f}'.format(exchange_rate)" t-value="o.amount_total_signed/o.amount_total"/></td>
                       </tr>
                 </table>
               </xpath>
