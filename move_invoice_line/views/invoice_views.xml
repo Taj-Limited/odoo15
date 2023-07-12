@@ -5,7 +5,14 @@
         <field name="name">taj_report_invoice_document</field>
         <field name="inherit_id" ref="account.report_invoice_document"/>
         <field name="arch" type="xml">
-
+                <xpath expr="//table[@name='invoice_line_table']" position='before'>
+                    <table class="col-sm-7 col-md-6 ml-auto">
+                      <tr>
+                          <td> <span >  <strong>Exchange Rate: </strong></span></td>
+                          <td class="text-right">  <span  t-esc="'{0:,.2f}'.format(int(o.amount_total_signed/o.amount_total))" /></td>
+                      </tr>
+                </table>
+              </xpath>
              <xpath expr="//t[@t-set='tax_totals']" position='after'>
 
                       <tr>
