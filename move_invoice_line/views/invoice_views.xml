@@ -9,7 +9,7 @@
                     <table>
                       <tr>
                           <td> <span >  <strong>Total TSH </strong></span></td>
-                          <td class="text-right"> Exchange Rate: <span t-set="exchange_rate" t-value="o.amount_total_signed/o.total"/></td>
+                          <td class="text-right"> Exchange Rate: <span t-set="exchange_rate" t-value="'{0:,.2f}'.format(o.amount_total_signed/o.amount_total)"/></td>
                       </tr>
                 </table>
               </xpath>
