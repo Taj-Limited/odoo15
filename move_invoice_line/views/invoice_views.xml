@@ -5,7 +5,14 @@
         <field name="name">taj_report_invoice_document</field>
         <field name="inherit_id" ref="account.report_invoice_document"/>
         <field name="arch" type="xml">
-
+                <xpath expr="//table[@name='invoice_line_table']" position='before'>
+                    <table>
+                      <tr>
+                          <td> <span >  <strong>Total TSH </strong></span></td>
+                          <td class="text-right"> Exchange Rate: <span t-set="exchange_rate" t-value="o.amount_total_signed/o.total"/></td>
+                      </tr>
+                </table>
+              </xpath>
              <xpath expr="//t[@t-set='tax_totals']" position='after'>
 
                       <tr>
