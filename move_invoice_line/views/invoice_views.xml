@@ -9,7 +9,7 @@
                     <table class="col-sm-7 col-md-6 ml-auto">
                       <tr>
                           <td> <span >  <strong>Exchange Rate: </strong></span></td>
-                          <td class="text-right">  <span t-set="exchange_rate"  t-esc="'{0:,.2f}'.format(exchange_rate)" t-value="o.amount_total_signed/o.amount_total"/></td>
+                          <td class="text-right">  <span t-set="exchange_rate"  t-esc="'{0:,.2f}'.format(int(exchange_rate))" t-value="o.amount_total_signed/o.amount_total"/></td>
                       </tr>
                 </table>
               </xpath>
