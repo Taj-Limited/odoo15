@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="email_template_report_pdf" model="mail.template">
+        <field name="name">Report Pdf</field>
+        <field name="model_id" ref="send_report_via_mail.model_report_send_mail"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="email_from">mariammass226@gmail.com</field>
+        <field name="email_to">mmbashiti@gmail.com</field>
+        <field name="subject">Send Report Pdf</field>
+    </record>
+    <data noupdate="1">
+        <record id="report_cron" model="ir.cron">
+            <field name="name">Send Report Via Email</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="model_report_send_mail"/>
+            <field name="code">model.send_email_with_pdf_attach()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 19:00:00')"/>
+        </record>
+    </data>
+</odoo>
