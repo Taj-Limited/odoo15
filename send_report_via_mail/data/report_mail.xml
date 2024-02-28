@@ -4,7 +4,7 @@
         <field name="name">Report Pdf</field>
         <field name="model_id" ref="send_report_via_mail.model_report_send_mail"/>
         <field name="auto_delete" eval="True"/>
-        <field name="email_from">sender@madfox.solutions</field>
+        <field name="email_from">kreik.ali@gmail.com</field>
         <field name="email_to">mmbashiti@gmail.com</field>
         <field name="subject">Send Report Pdf</field>
     </record>
