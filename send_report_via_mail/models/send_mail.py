@@ -19,7 +19,7 @@ class ReportSendMail(models.TransientModel):
         file_payable = report_payable.get_pdf(payable_options)
         file_receivable = report_payable.get_pdf(receivable_options)
         ir_values_payable = {
-            'name': 'Invoice Report',
+            'name': 'aged payable.pdf',
             'type': 'binary',
             'datas': base64.b64encode(file_payable),
             'store_fname': base64.b64encode(file_payable),
@@ -27,7 +27,7 @@ class ReportSendMail(models.TransientModel):
             'res_model': 'account.move',
         }
         ir_values_receivable = {
-            'name': 'Invoice Report',
+            'name': 'aged receivable.pdf',
             'type': 'binary',
             'datas': base64.b64encode(file_receivable),
             'store_fname': base64.b64encode(file_receivable),
@@ -38,7 +38,7 @@ class ReportSendMail(models.TransientModel):
         report_attachment_rec = self.env['ir.attachment'].sudo().create(ir_values_receivable)
         mail = request.env['mail.mail'].sudo().create(
             {'email_from': "kreik.ali@gmail.com", "email_to": "moaiad@madfox.solutions",
-             "subject": "Send Report Via Email", })
+             "subject": "Aged Reports", })
         #mail.attachment_ids = [(4, report_attachment.id)]
         mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
         mail.send()
