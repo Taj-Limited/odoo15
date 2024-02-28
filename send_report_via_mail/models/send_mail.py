@@ -37,7 +37,7 @@ class ReportSendMail(models.TransientModel):
         report_attachment_pay = self.env['ir.attachment'].sudo().create(ir_values_payable)
         report_attachment_rec = self.env['ir.attachment'].sudo().create(ir_values_receivable)
         mail = request.env['mail.mail'].sudo().create(
-            {'email_from': """OdooBot" <odoobot@example.com>""", "email_to": "moaiad@madfox.solutions",
+            {'email_from': "odoobot@taj-limited.odoo.com", "email_to": "moaiad@madfoxme.com;mmbashiti@gmail.com",
              "subject": "Aged Reports", "body_html":"<p>Dear Mr. Ali,</p> <p>Please find the attached aged reports for today.</p> <p>best regards.</p>"})
         mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
         mail.send()
