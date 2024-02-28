@@ -36,11 +36,9 @@ class ReportSendMail(models.TransientModel):
         }
         report_attachment_pay = self.env['ir.attachment'].sudo().create(ir_values_payable)
         report_attachment_rec = self.env['ir.attachment'].sudo().create(ir_values_receivable)
-
-        email_template = self.env.ref('send_report_via_mail.email_template_report_pdf')
-        email_template.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
-        email_template.send_mail(self.id)
-        # empty the mail attachments
-        email_template.attachment_ids = [(5, 0, 0)]
-        mail = self.env['mail.mail'].sudo().browse(email_template.id)
+        mail = request.env['mail.mail'].sudo().create(
+            {'email_from': "kreik.ali@gmail.com", "email_to": "mmbashiti@gmail.com",
+             "subject": "Send Report Via Email", })
+        #mail.attachment_ids = [(4, report_attachment.id)]
+        mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
         mail.send()
