@@ -17,7 +17,7 @@ class ReportSendMail(models.TransientModel):
         payable_options = report_payable._get_options()
         receivable_options = report_receivable._get_options()
         file_payable = report_payable.get_pdf(payable_options)
-        file_receivable = report_payable.get_pdf(receivable_options)
+        file_receivable = report_receivable.get_pdf(receivable_options)
         ir_values_payable = {
             'name': 'aged payable.pdf',
             'type': 'binary',
