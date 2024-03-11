@@ -8,7 +8,7 @@
     'summary': 'Send Mail Implementation',
     'description': """Send Report Via Email""",
     'depends': ['payment'],
-    'depends': ['account', 'report_xlsx'],
+    'depends': ['account'],
     'data': [
         'security/ir.model.access.csv',
         'data/report_mail.xml',
