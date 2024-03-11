@@ -13,7 +13,7 @@
         'security/ir.model.access.csv',
         'data/report_mail.xml',
         'views/send_mail.xml',
-        'report/report_profit_and_loss_views.xml'
+        'reports/report_profit_and_loss_views.xml'
     ],
     'application': True,
     'license': 'LGPL-3',
