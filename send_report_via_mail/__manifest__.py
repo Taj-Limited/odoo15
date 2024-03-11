@@ -8,10 +8,12 @@
     'summary': 'Send Mail Implementation',
     'description': """Send Report Via Email""",
     'depends': ['payment'],
-    'depends': ['account'],
+    'depends': ['account', 'report_xlsx'],
     'data': [
         'security/ir.model.access.csv',
         'data/report_mail.xml',
+        'views/send_mail.xml',
+        'report/report_profit_and_loss_views.xml'
     ],
     'application': True,
     'license': 'LGPL-3',
