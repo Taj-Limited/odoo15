@@ -250,7 +250,7 @@ class ReportSendMail(models.TransientModel):
                          'root': order.product_template_id.name,
                          'vehicle_id': order.vehicle_id.name,
                          'product_tmpl_id': order.product_template_id.name,
-                         'operating_income': order.order_id.invoice_ids[0].amount_residual,
+                         'operating_income': order.order_id.invoice_ids[0].amount_total_signed,
                          'account_move_line': account_move_line.ids,
                          'total_fuel': sum(account_move_line.mapped('debit')),
                          'date': order.order_id.date_order,
@@ -303,7 +303,7 @@ class ReportSendMail(models.TransientModel):
                          'total_cost': sum(account_move_line_return_income.mapped('credit')) + sum(
                              account_move_line_return_cost_of_revenue.mapped('debit')) + sum(
                              account_move_line.mapped('debit')) + total_going,
-                         'cross_profit': order.order_id.invoice_ids[0].amount_residual - (
+                         'cross_profit': order.order_id.invoice_ids[0].amount_total_signed - (
                                  sum(account_move_line_return_income.mapped('credit')) + sum(
                              account_move_line_return_cost_of_revenue.mapped('debit')) + sum(
                              account_move_line.mapped('debit')) + total_going),
