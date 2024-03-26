@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="report_profit_and_loss_excel" model="ir.actions.report">
+            <field name="name">Report Profit And Loss</field>
+            <field name="model">report.send.mail</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">send_report_via_mail.profit_loss_report</field>
+            <field name="report_file">send_report_via_mail.profit_loss_report</field>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
