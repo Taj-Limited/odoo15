@@ -19,7 +19,7 @@ class ReportSendMail(models.TransientModel):
         payable_options = report_payable._get_options()
         receivable_options = report_receivable._get_options()
         file_payable = report_payable.get_pdf(payable_options)
-        file_receivable = report_payable.get_pdf(receivable_options)
+        file_receivable = report_receivable.get_pdf(receivable_options)
         ir_values_payable = {
             'name': 'aged payable.pdf',
             'type': 'binary',
@@ -39,7 +39,7 @@ class ReportSendMail(models.TransientModel):
         report_attachment_pay = self.env['ir.attachment'].sudo().create(ir_values_payable)
         report_attachment_rec = self.env['ir.attachment'].sudo().create(ir_values_receivable)
         mail = request.env['mail.mail'].sudo().create(
-            {'email_from': "odoobot@taj-limited.odoo.com", "email_to": "moaiad@madfoxme.com;mmbashiti@gmail.com",
+            {'email_from': "odoobot@taj-limited.odoo.com", "email_to": "kreik.ali@gmail.com", "email_cc": "nour.m@madfox.me; Moustapha@madfoxme.com; souzan.s@madfoxme.com",
              "subject": "Aged Reports",
              "body_html": "<p>Dear Mr. Ali,</p> <p>Please find the attached aged reports for today.</p> <p>best regards.</p>"})
         mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
@@ -145,6 +145,7 @@ class ReportSendMail(models.TransientModel):
             [('name', 'like', 'KAWACHA'),
              ('user_type_id', '=', typ_of_account_cost_of_revenue.id)])
         for order in orders.order_line:
+            print("order.product_template_id.name.split('-')[0]", order.product_template_id.name.split('-')[0])
             order_ids.append(order)
             account_move_line = self.env['account.move.line'].sudo().search(
                 [('order_id', '=', order.order_id.id), ('account_id', 'in', account_fuel_ids)
@@ -307,6 +308,8 @@ class ReportSendMail(models.TransientModel):
                                  sum(account_move_line_return_income.mapped('credit')) + sum(
                              account_move_line_return_cost_of_revenue.mapped('debit')) + sum(
                              account_move_line.mapped('debit')) + total_going),
+                         'size': order.size,
+                         'trip': 'Going' if 'Dar' in order.product_template_id.name.split('-')[0] else 'Return'
 
                          })
         print("data:::::", data)

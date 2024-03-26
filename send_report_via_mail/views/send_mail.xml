@@ -48,5 +48,5 @@
         <field name="target">new</field>
     </record>
 
-    <menuitem id="send_pdf_report_menu" name="Trip Profit" action="action_choose_date_report" parent="sale.menu_sale_report"/>
+    <menuitem id="send_pdf_report_menu" name="Report Profit" action="action_choose_date_report" parent="sale.menu_sale_report"/>
 </odoo>
