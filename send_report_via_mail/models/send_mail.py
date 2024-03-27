@@ -43,6 +43,7 @@ class ReportSendMail(models.TransientModel):
         }
         report_attachment_pay = self.env['ir.attachment'].sudo().create(ir_values_payable)
         report_attachment_rec = self.env['ir.attachment'].sudo().create(ir_values_receivable)
+        self.env.cr.commit()
         _logger = logging.getLogger(__name__)
         _logger.info(f"report_attachment_pay: {report_attachment_pay}")
         _logger.info(f"report_attachment_rec: {report_attachment_rec}")
@@ -51,7 +52,7 @@ class ReportSendMail(models.TransientModel):
              "subject": "Aged Reports",
              "body_html": "<p>Dear Mr. Ali,</p> <p>Please find the attached aged reports for today.</p> <p>best regards.</p>"})
         #mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
-        mail.attachment_ids = [report_attachment_pay, report_attachment_rec]
+        mail.attachment_ids = [report_attachment_pay.id, report_attachment_rec.id]
         mail.send()
 
     def convert_date_to_datetime(self, from_date, to_date):
