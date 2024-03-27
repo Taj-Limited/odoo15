@@ -51,7 +51,7 @@ class ReportSendMail(models.TransientModel):
              "subject": "Aged Reports",
              "body_html": "<p>Dear Mr. Ali,</p> <p>Please find the attached aged reports for today.</p> <p>best regards.</p>"})
         #mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
-        mail.attachment_ids = [report_attachment_pay.id, report_attachment_rec.id]
+        mail.attachment_ids = [report_attachment_pay, report_attachment_rec]
         mail.send()
 
     def convert_date_to_datetime(self, from_date, to_date):
