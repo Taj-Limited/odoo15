@@ -152,7 +152,6 @@ class ReportSendMail(models.TransientModel):
             [('name', 'like', 'KAWACHA'),
              ('user_type_id', '=', typ_of_account_cost_of_revenue.id)])
         for order in orders.order_line:
-            print("order.product_template_id.name.split('-')[0]", order.product_template_id.name.split('-')[0])
             order_ids.append(order)
             account_move_line = self.env['account.move.line'].sudo().search(
                 [('order_id', '=', order.order_id.id), ('account_id', 'in', account_fuel_ids)
@@ -253,6 +252,10 @@ class ReportSendMail(models.TransientModel):
                 account_move_line_Transit_fees_Cargo_Rearrangement.mapped('debit')) + sum(
                 account_move_line_Carbon_Tax.mapped('debit')) + sum(
                 account_move_line_Transit_fees_Peage.mapped('debit')) + sum(account_move_line_KAWACHA.mapped('debit'))
+            if order.product_template_id.name:
+                name_trip = 'Going' if 'Dar' in order.product_template_id.name.split('-')[0] else 'Return'
+            else:
+                name_trip = 'Going'
             data.append({'order_name': order.order_id.name,
                          'license_plate': order.vehicle_id.license_plate,
                          'root': order.product_template_id.name,
@@ -318,7 +321,7 @@ class ReportSendMail(models.TransientModel):
                                              account_move_line_return_cost_of_revenue.mapped('debit')) + sum(
                                              account_move_line.mapped('debit')) + total_going),
                          'size': order.size,
-                         'trip': 'Going' if 'Dar' in order.product_template_id.name.split('-')[0] else 'Return'
+                         'trip': name_trip
 
                          })
         print("data:::::", data)
