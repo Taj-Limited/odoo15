@@ -7,10 +7,6 @@ from odoo.http import request
 import logging
 
 
-
-
-
-
 class ReportSendMail(models.TransientModel):
     _name = 'report.send.mail'
     _description = 'Send Report Pdf Via Mail'
@@ -48,10 +44,11 @@ class ReportSendMail(models.TransientModel):
         _logger.info(f"report_attachment_pay: {report_attachment_pay}")
         _logger.info(f"report_attachment_rec: {report_attachment_rec}")
         mail = request.env['mail.mail'].sudo().create(
-            {'email_from': "odoobot@taj-limited.odoo.com", "email_to": "kreik.ali@gmail.com", "email_cc": "nour.m@madfoxme.com; Moustapha@madfoxme.com; souzan.s@madfoxme.com",
+            {'email_from': "odoobot@taj-limited.odoo.com", "email_to": "kreik.ali@gmail.com",
+             "email_cc": "nour.m@madfoxme.com; Moustapha@madfoxme.com; souzan.s@madfoxme.com",
              "subject": "Aged Reports",
              "body_html": "<p>Dear Mr. Ali,</p> <p>Please find the attached aged reports for today.</p> <p>best regards.</p>"})
-        #mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
+        # mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
         mail.attachment_ids = [report_attachment_pay.id, report_attachment_rec.id]
         mail.send()
 
@@ -261,7 +258,8 @@ class ReportSendMail(models.TransientModel):
                          'root': order.product_template_id.name,
                          'vehicle_id': order.vehicle_id.name,
                          'product_tmpl_id': order.product_template_id.name,
-                         'operating_income': order.order_id.invoice_ids[0].amount_total_signed,
+                         'operating_income': order.order_id.invoice_ids[0].amount_total_signed if len(
+                             order.order_id.invoice_ids) > 0 else 0.0,
                          'account_move_line': account_move_line.ids,
                          'total_fuel': sum(account_move_line.mapped('debit')),
                          'date': order.order_id.date_order,
@@ -314,10 +312,11 @@ class ReportSendMail(models.TransientModel):
                          'total_cost': sum(account_move_line_return_income.mapped('credit')) + sum(
                              account_move_line_return_cost_of_revenue.mapped('debit')) + sum(
                              account_move_line.mapped('debit')) + total_going,
-                         'cross_profit': order.order_id.invoice_ids[0].amount_total_signed - (
-                                 sum(account_move_line_return_income.mapped('credit')) + sum(
-                             account_move_line_return_cost_of_revenue.mapped('debit')) + sum(
-                             account_move_line.mapped('debit')) + total_going),
+                         'cross_profit': (order.order_id.invoice_ids[0].amount_total_signed if len(
+                             order.order_id.invoice_ids) > 0 else 0.0) - (
+                                                 sum(account_move_line_return_income.mapped('credit')) + sum(
+                                             account_move_line_return_cost_of_revenue.mapped('debit')) + sum(
+                                             account_move_line.mapped('debit')) + total_going),
                          'size': order.size,
                          'trip': 'Going' if 'Dar' in order.product_template_id.name.split('-')[0] else 'Return'
 
