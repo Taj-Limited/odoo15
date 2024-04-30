@@ -98,30 +98,33 @@ class ReportSendMail(models.TransientModel):
                 template_name = 'Return'
             total_credit = sum(account_move_line_return_income.mapped('credit')) + sum(
                 account_move_line.mapped('credit')) + sum(account_move_line_going_income.mapped('credit'))
-            data.append({'order_name': order.order_id.name,
-                         'license_plate': order.vehicle_id.license_plate,
-                         'root': order.product_template_id.name,
-                         'vehicle_id': order.vehicle_id.name,
-                         'product_tmpl_id': order.product_template_id.name,
-                         'operating_income': op,
-                         'account_move_line': account_move_line.ids,
-                         'total_fuel': sum(account_move_line.mapped('debit')),
-                         'date': order.order_id.date_order,
-                         'total_going': sum(account_move_line_going_income.mapped('debit')),
-                         'total_return': sum(account_move_line_return_income.mapped('debit')),
-                         'total_return_income': sum(account_move_line_return_income.mapped('debit')),
-                         'total_cost': sum(account_move_line_return_income.mapped('debit')) + sum(
-                             account_move_line.mapped('debit')) + sum(account_move_line_going_income.mapped('debit')),
-                         'cross_profit': op - (
-                                 sum(account_move_line_return_income.mapped('debit')) + sum(
-                             account_move_line.mapped('debit')) + sum(account_move_line_going_income.mapped('debit'))),
-                         'size': order.size,
-                         'trip': template_name,
-                         'expenses': (sum(account_move_line_return_income.mapped('debit')) + sum(
-                             account_move_line.mapped('debit')) + sum(
-                             account_move_line_going_income.mapped('debit'))) - total_credit
+            if order.product_template_id.name != 'Down payment':
+                data.append({'order_name': order.order_id.name,
+                             'license_plate': order.vehicle_id.license_plate,
+                             'root': order.product_template_id.name,
+                             'vehicle_id': order.vehicle_id.name,
+                             'product_tmpl_id': order.product_template_id.name,
+                             'operating_income': op,
+                             'account_move_line': account_move_line.ids,
+                             'total_fuel': sum(account_move_line.mapped('debit')),
+                             'date': order.order_id.date_order,
+                             'total_going': sum(account_move_line_going_income.mapped('debit')),
+                             'total_return': sum(account_move_line_return_income.mapped('debit')),
+                             'total_return_income': sum(account_move_line_return_income.mapped('debit')),
+                             'total_cost': sum(account_move_line_return_income.mapped('debit')) + sum(
+                                 account_move_line.mapped('debit')) + sum(
+                                 account_move_line_going_income.mapped('debit')),
+                             'cross_profit': op - (
+                                     sum(account_move_line_return_income.mapped('debit')) + sum(
+                                 account_move_line.mapped('debit')) + sum(
+                                 account_move_line_going_income.mapped('debit'))),
+                             'size': order.size,
+                             'trip': template_name,
+                             'expenses': (sum(account_move_line_return_income.mapped('debit')) + sum(
+                                 account_move_line.mapped('debit')) + sum(
+                                 account_move_line_going_income.mapped('debit'))) - total_credit
 
-                         })
+                             })
         # print("data:::::", data)
         all_1 = {
             'products': data,
