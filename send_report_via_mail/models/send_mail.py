@@ -115,8 +115,10 @@ class ReportSendMail(models.TransientModel):
                              'account_move_line': account_move_line.ids,
                              'total_fuel': sum(account_move_line.mapped('debit')),
                              'date': order.order_id.date_order,
-                             'total_going': sum(account_move_line_going_income.mapped('debit')),
-                             'total_return': sum(account_move_line_return_income.mapped('debit')),
+                             'total_going': sum(
+                                 account_move_line_going_income.mapped('debit')) if template_name == 'Going' else 0.0,
+                             'total_return': sum(
+                                 account_move_line_return_income.mapped('debit')) if template_name == 'Return' else 0.0,
                              'total_return_income': sum(account_move_line_return_income.mapped('debit')),
                              'total_cost': sum(account_move_line_return_income.mapped('debit')) + sum(
                                  account_move_line.mapped('debit')) + sum(
