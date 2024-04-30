@@ -103,8 +103,18 @@ class ReportSendMail(models.TransientModel):
                 template_name = 'Going' if 'Dar' in order.product_template_id.name.split('-')[0] else 'Return'
             else:
                 template_name = 'Return'
-            total_credit = sum(account_move_line_return_income.mapped('credit')) + sum(
-                account_move_line.mapped('credit')) + sum(account_move_line_going_income.mapped('credit'))
+            total_credit = 0
+            total_debit = 0
+            if template_name == 'Return':
+                total_credit = sum(account_move_line_return_income.mapped('credit')) + sum(
+                    account_move_line.mapped('credit'))
+                total_debit = sum(account_move_line_return_income.mapped('debit')) + sum(
+                    account_move_line.mapped('debit'))
+            if template_name == 'Going':
+                total_debit = sum(account_move_line.mapped('debit')) + sum(
+                    account_move_line_going_income.mapped('debit'))
+                total_credit = sum(account_move_line.mapped('credit')) + sum(
+                    account_move_line_going_income.mapped('credit'))
             if order.product_template_id.name != 'Down payment':
                 data.append({'order_name': order.order_id.name,
                              'license_plate': order.vehicle_id.license_plate,
@@ -129,9 +139,7 @@ class ReportSendMail(models.TransientModel):
                                  account_move_line_going_income.mapped('debit'))),
                              'size': order.size,
                              'trip': template_name,
-                             'expenses': (sum(account_move_line_return_income.mapped('debit')) + sum(
-                                 account_move_line.mapped('debit')) + sum(
-                                 account_move_line_going_income.mapped('debit'))) - total_credit
+                             'expenses': total_debit - total_credit
 
                              })
         # print("data:::::", data)
