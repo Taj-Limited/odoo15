@@ -25,10 +25,9 @@ class ReportTajProfitExcel(models.AbstractModel):
         sheet.write(0, 7, 'Total Going', bold)
         sheet.write(0, 8, 'Total Return', bold)
         sheet.write(0, 9, 'Total Fuel', bold)
-        sheet.write(0, 10, 'Total Cost', bold)
-        sheet.write(0, 11, 'Expenses', bold)
-        sheet.write(0, 12, 'Gross Profit', bold)
-        sheet.write(0, 13, '%', bold)
+        sheet.write(0, 10, 'Expenses', bold)
+        sheet.write(0, 11, 'Gross Profit', bold)
+        sheet.write(0, 12, '%', bold)
 
         # sheet.write(0, 5, 'Jt I sh', bold)
         # sheet.write(0, 6, 'Jt I Ml', bold)
@@ -51,8 +50,7 @@ class ReportTajProfitExcel(models.AbstractModel):
             sheet.write(row, 7, obj['total_going'])
             sheet.write(row, 8, obj['total_return'])
             sheet.write(row, 9, obj['total_fuel'])
-            sheet.write(row, 10, obj['total_cost'])
-            sheet.write(row, 11, obj['expenses'])
-            sheet.write(row, 12, obj['cross_profit'])
-            sheet.write(row, 13,
+            sheet.write(row, 10, obj['expenses'])
+            sheet.write(row, 11, obj['cross_profit'])
+            sheet.write(row, 12,
                         (obj['cross_profit'] / obj['operating_income'] * 100) if obj['operating_income'] != 0 else 0)

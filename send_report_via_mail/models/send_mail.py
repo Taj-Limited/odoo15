@@ -115,6 +115,7 @@ class ReportSendMail(models.TransientModel):
                     account_move_line_going_income.mapped('debit'))
                 total_credit = sum(account_move_line.mapped('credit')) + sum(
                     account_move_line_going_income.mapped('credit'))
+            expenses = total_debit - total_credit
             if order.product_template_id.name != 'Down payment':
                 data.append({'order_name': order.order_id.name,
                              'license_plate': order.vehicle_id.license_plate,
@@ -130,13 +131,8 @@ class ReportSendMail(models.TransientModel):
                              'total_return': sum(
                                  account_move_line_return_income.mapped('debit')) if template_name == 'Return' else 0.0,
                              'total_return_income': sum(account_move_line_return_income.mapped('debit')),
-                             'total_cost': sum(account_move_line_return_income.mapped('debit')) + sum(
-                                 account_move_line.mapped('debit')) + sum(
-                                 account_move_line_going_income.mapped('debit')),
-                             'cross_profit': op - (
-                                     sum(account_move_line_return_income.mapped('debit')) + sum(
-                                 account_move_line.mapped('debit')) + sum(
-                                 account_move_line_going_income.mapped('debit'))),
+                             'total_cost': total_debit - total_credit,
+                             'cross_profit': op - expenses,
                              'size': order.size,
                              'trip': template_name,
                              'expenses': total_debit - total_credit
