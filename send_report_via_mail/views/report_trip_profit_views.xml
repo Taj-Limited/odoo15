@@ -5,8 +5,8 @@
         <field name="model">report.trip.profit</field>
         <field name="arch" type="xml">
             <tree string="Report Trip Profit" create="0">
-                <field name="order_id"/>
                 <field name="truck"/>
+                <field name="order_id"/>
                 <field name="root"/>
                 <field name="trip"/>
                 <field name="size"/>
@@ -17,6 +17,8 @@
                 <field name="total_fuel"/>
                 <field name="total_cost"/>
                 <field name="expenses"/>
+                <field name="cross_profit"/>
+                <field name="percentage"/>
             </tree>
         </field>
     </record>

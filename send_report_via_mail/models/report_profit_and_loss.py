@@ -26,7 +26,7 @@ class ReportTajProfitExcel(models.AbstractModel):
         sheet.write(0, 8, 'Total Return', bold)
         sheet.write(0, 9, 'Total Fuel', bold)
         sheet.write(0, 10, 'Expenses', bold)
-        sheet.write(0, 11, 'Gross Profit', bold)
+        sheet.write(0, 11, 'Cross Profit', bold)
         sheet.write(0, 12, '%', bold)
 
         # sheet.write(0, 5, 'Jt I sh', bold)
