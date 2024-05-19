@@ -145,3 +145,103 @@ class ReportSendMail(models.TransientModel):
         action = self.env.ref('send_report_via_mail.report_profit_and_loss_excel').report_action(self, data=all_1)
         action.update({'close_on_report_download': True})
         return action
+
+    def view_report(self):
+        # date_from = '03-04-23'
+        # date_to = '03/05/2023'
+        date = datetime.datetime.now()
+        date_from_d = datetime.datetime.strptime('02/01/24', '%m/%d/%y').date()
+        date_to_d = datetime.datetime.strptime('03/03/24', '%m/%d/%y').date()
+        from_d, to_d = self.convert_date_to_datetime(from_date=self.from_date, to_date=self.to_date)
+        orders = self.env['sale.order'].sudo().search([('date_order', '>', from_d), ('date_order', '<=', to_d)])
+        order_ids = []
+        data = []
+        typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
+        typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
+            [('name', '=', 'Cost of Revenue')])
+        account_fuel_ids = ['500073', '500074', '500075', '500076', '500077']
+        account_return_income_ids = ['500061', '500062', '500063', '500064', '500065', '500066', '500067', '500068',
+                                     '500070', '500098', '500110', '500112', '50070', '50080', '510071', '511071',
+                                     '512071', '500044', '500048', '500054', '500102', '500103', '500104', '500105',
+                                     '500111', '500113']
+        account_going_of_revenue_ids = ['500037', '500038', '500039', '500041', '500042', '500045', '500046', '500047',
+                                        '500049', '500050', '500053', '500055', '500056', '500058', '500059', '500069',
+                                        '500096', '500044', '500048', '500054', '500102', '500103', '500104', '500105',
+                                        '500111', '500113']
+        for order in orders.order_line:
+            order_ids.append(order)
+            account_move_line = self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', 'in', account_fuel_ids)
+                 ])
+            account_move_line_return_income = self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', 'in', account_return_income_ids),
+                 ])
+            account_move_line_going_income = self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', 'in', account_going_of_revenue_ids),
+                 ])
+            if len(
+                    order.order_id.invoice_ids) > 0:
+                op = order.order_id.invoice_ids[0].amount_total_signed
+            else:
+                op = 0.0
+            template_name = 'Return'
+            if order.product_template_id.name:
+                template_name = 'Going' if 'Dar' in order.product_template_id.name.split('-')[0] else 'Return'
+            else:
+                template_name = 'Return'
+            total_credit = 0
+            total_debit = 0
+            if template_name == 'Return':
+                total_credit = sum(account_move_line_return_income.mapped('credit')) + sum(
+                    account_move_line.mapped('credit'))
+                total_debit = sum(account_move_line_return_income.mapped('debit')) + sum(
+                    account_move_line.mapped('debit'))
+            if template_name == 'Going':
+                total_debit = sum(account_move_line.mapped('debit')) + sum(
+                    account_move_line_going_income.mapped('debit'))
+                total_credit = sum(account_move_line.mapped('credit')) + sum(
+                    account_move_line_going_income.mapped('credit'))
+            expenses = total_debit - total_credit
+            if order.product_template_id.name != 'Down payment':
+                print("order.order_id.date_order.date()", order.order_id.date_order.date())
+                exist = self.env['report.trip.profit'].sudo().search(
+                    [('date', '=', order.order_id.date_order.date()), ('order_id', '=', order.order_id.id)])
+                if exist:
+                    # for rec in exist:
+                    exist.order_id = order.order_id.id
+                    exist.truck = order.vehicle_id.license_plate
+                    exist.root = order.product_template_id.id
+                    exist.trip = template_name
+                    exist.size = order.size
+                    exist.operating_income = op
+                    exist.total_going = sum(
+                        account_move_line_going_income.mapped('debit')) if template_name == 'Going' else 0.0
+                    exist.total_return = sum(
+                        account_move_line_return_income.mapped('debit')) if template_name == 'Return' else 0.0
+                    exist.total_fuel = sum(account_move_line.mapped('debit'))
+                    exist.expenses = total_debit - total_credit
+                else:
+                    self.env['report.trip.profit'].sudo().create({'order_id': order.order_id.id,
+                                                                  'date': order.order_id.date_order.date(),
+                                                                  'truck': order.vehicle_id.license_plate,
+                                                                  'root': order.product_template_id.id,
+                                                                  'trip': template_name,
+                                                                  'size': order.size,
+                                                                  'operating_income': op,
+                                                                  'total_going': sum(
+                                                                      account_move_line_going_income.mapped(
+                                                                          'debit')) if template_name == 'Going' else 0.0,
+                                                                  'total_return': sum(
+                                                                      account_move_line_return_income.mapped(
+                                                                          'debit')) if template_name == 'Return' else 0.0,
+                                                                  'total_fuel': sum(account_move_line.mapped('debit')),
+                                                                  'expenses': total_debit - total_credit})
+        return {
+            'name': 'Report Trip Profit',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'res_model': 'report.trip.profit',
+            # 'views': [(treeview_id, 'tree')],
+            # 'target': 'new',
+        }

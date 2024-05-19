@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access.report.send.mail,access_report_send_mail,model_report_send_mail,,1,1,1,1
+access.report.trip.profit,access_report_trip_profit,model_report_trip_profit,,1,1,1,1
+
+
