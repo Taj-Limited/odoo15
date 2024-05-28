@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="report_trip_profit_tree" model="ir.ui.view">
+        <field name="name">Report Trip Profit</field>
+        <field name="model">report.trip.profit</field>
+        <field name="arch" type="xml">
+            <tree string="Report Trip Profit" create="0">
+                <field name="truck"/>
+                <field name="order_id"/>
+                <field name="root"/>
+                <field name="trip"/>
+                <field name="size"/>
+                <field name="date"/>
+                <field name="operating_income"/>
+                <field name="total_going"/>
+                <field name="total_return"/>
+                <field name="total_fuel"/>
+                <field name="total_cost"/>
+                <field name="expenses"/>
+                <field name="cross_profit"/>
+                <field name="percentage"/>
+<!--                <button name="view_details" type="object"-->
+<!--                        string="View"/>-->
+            </tree>
+        </field>
+    </record>
+    <record id="report_trip_profit_action" model="ir.actions.act_window">
+        <field name="name">Report Trip Profit</field>
+        <field name="res_model">report.trip.profit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="report_trip_profit_tree"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
