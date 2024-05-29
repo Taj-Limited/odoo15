@@ -10,16 +10,16 @@ class PurchaseOrderInherit(models.Model):
         action = super(PurchaseOrderInherit, self).action_create_invoice()
         # account_move_id = self.env['account.move'].sudo().search([("purchase_id", "=", self.id)])
         # print("account_move_id", account_move_id)
+        user_account_type = self.env['account.account.type'].sudo().search([('type', '=', 'payable')])
         for rec in self.sale_order_id.order_line:
             for rec_line in self.invoice_ids[0].line_ids:
-                rec_line.container_num = rec.container_num
-                rec_line.file_name = rec.file_name
-                rec_line.consignee = rec.consignee
-                rec_line.weight = rec.weight
-                rec_line.size = rec.size
-                rec_line.srn = rec.srn
-                rec_line.vehicle_id = rec.vehicle_id
-                rec_line.order_id = rec.order_id.id
-                print("rec.id:::", rec.id)
-                print("rec.order_id.id", rec.order_id.id)
-                rec_line.route_id = rec.id
+                if rec_line.account_id.user_type_id.id != user_account_type.id:
+                    rec_line.container_num = rec.container_num
+                    rec_line.file_name = rec.file_name
+                    rec_line.consignee = rec.consignee
+                    rec_line.weight = rec.weight
+                    rec_line.size = rec.size
+                    rec_line.srn = rec.srn
+                    rec_line.vehicle_id = rec.vehicle_id
+                    rec_line.order_id = rec.order_id.id
+                    rec_line.route_id = rec.id
