@@ -21,3 +21,6 @@ class ReportTripProfit(models.Model):
     expenses = fields.Float("Expenses")
     cross_profit = fields.Float('Cross Profit')
     percentage = fields.Char('%')
+
+    # def view_details(self):
+    #     print("jjj")

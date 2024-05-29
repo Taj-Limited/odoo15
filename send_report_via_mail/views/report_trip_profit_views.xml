@@ -19,6 +19,8 @@
                 <field name="expenses"/>
                 <field name="cross_profit"/>
                 <field name="percentage"/>
+<!--                <button name="view_details" type="object"-->
+<!--                        string="View"/>-->
             </tree>
         </field>
     </record>
