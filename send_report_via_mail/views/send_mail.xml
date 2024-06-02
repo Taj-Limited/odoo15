@@ -21,7 +21,7 @@
                         <field name="to_date"/>
                     </group>
                     <footer>
-                        <button name="send_report" string="Print" type="object" class="btn-primary"/>
+                        <button name="send_report" string="Download Full Details" type="object" class="btn-primary"/>
                         <button name="view_report" string="View Report" type="object" class="btn-primary"/>
                     </footer>
                 </sheet>
