@@ -20,7 +20,7 @@ class ReportTripProfit(models.Model):
     total_cost = fields.Float("Total Cost")
     expenses = fields.Float("Expenses")
     cross_profit = fields.Float('Cross Profit')
-    percentage = fields.Char('%')
+    percentage = fields.Float('%')
 
     # def view_details(self):
     #     print("jjj")

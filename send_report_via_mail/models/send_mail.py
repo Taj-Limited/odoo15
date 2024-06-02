@@ -448,7 +448,7 @@ class ReportSendMail(models.TransientModel):
                     exist.total_fuel = sum(account_move_line.mapped('debit'))
                     exist.expenses = total_debit - total_credit
                     exist.cross_profit = op - expenses
-                    exist.percentage = ((op - expenses) / op * 100) if op != 0 else 0
+                    exist.percentage = round(((op - expenses) / op * 100), 2) if op != 0 else 0
                 else:
                     self.env['report.trip.profit'].sudo().create({'order_id': order.order_id.id,
                                                                   'date': order.order_id.date_order.date(),
@@ -466,8 +466,9 @@ class ReportSendMail(models.TransientModel):
                                                                   'total_fuel': sum(account_move_line.mapped('debit')),
                                                                   'expenses': total_debit - total_credit,
                                                                   'cross_profit': op - expenses,
-                                                                  'percentage': ((
-                                                                                         op - expenses) / op * 100) if op != 0 else 0
+                                                                  'percentage': round(((
+                                                                                               op - expenses) / op * 100),
+                                                                                      2) if op != 0 else 0
                                                                   })
         return {
             'name': 'Report Trip Profit',
