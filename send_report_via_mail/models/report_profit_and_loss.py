@@ -1,6 +1,5 @@
 import datetime
 import logging
-from openpyxl import Workbook
 from odoo import models
 
 _logger = logging.getLogger(__name__)
