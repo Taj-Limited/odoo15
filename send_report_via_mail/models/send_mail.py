@@ -66,8 +66,11 @@ class ReportSendMail(models.TransientModel):
         date = datetime.datetime.now()
         date_from_d = datetime.datetime.strptime('02/01/24', '%m/%d/%y').date()
         date_to_d = datetime.datetime.strptime('03/03/24', '%m/%d/%y').date()
-        from_d, to_d = self.convert_date_to_datetime(from_date=self.from_date, to_date=self.to_date)
-        orders = self.env['sale.order'].sudo().search([('date_order', '>', from_d), ('date_order', '<=', to_d)])
+        if self.from_date and self.to_date:
+            from_d, to_d = self.convert_date_to_datetime(from_date=self.from_date, to_date=self.to_date)
+            orders = self.env['sale.order'].sudo().search([('date_order', '>', from_d), ('date_order', '<=', to_d)])
+        else:
+            orders = self.env['sale.order'].sudo().search([])
         order_ids = []
         data = []
         typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
@@ -379,8 +382,11 @@ class ReportSendMail(models.TransientModel):
         date = datetime.datetime.now()
         date_from_d = datetime.datetime.strptime('02/01/24', '%m/%d/%y').date()
         date_to_d = datetime.datetime.strptime('03/03/24', '%m/%d/%y').date()
-        from_d, to_d = self.convert_date_to_datetime(from_date=self.from_date, to_date=self.to_date)
-        orders = self.env['sale.order'].sudo().search([('date_order', '>', from_d), ('date_order', '<=', to_d)])
+        if self.from_date and self.to_date:
+            from_d, to_d = self.convert_date_to_datetime(from_date=self.from_date, to_date=self.to_date)
+            orders = self.env['sale.order'].sudo().search([('date_order', '>', from_d), ('date_order', '<=', to_d)])
+        else:
+            orders = self.env['sale.order'].sudo().search([])
         order_ids = []
         data = []
         typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
@@ -400,9 +406,179 @@ class ReportSendMail(models.TransientModel):
             account_move_line = self.env['account.move.line'].sudo().search(
                 [('order_id', '=', order.order_id.id), ('account_id.code', 'in', account_fuel_ids)
                  ])
+            Transit_fees_Documentation_Fees = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500037')
+                 ]).mapped('debit'))
+            Transit_fees_Levy_Council_Fee_Nakonde = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500038')
+                 ]).mapped('debit'))
+            Transit_fees_Levy_Council_Fee_Kapiri = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500039')
+                 ]).mapped('debit'))
+            Transit_fees_Parking_Security_Fees_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500041')
+                 ]).mapped('debit'))
+            Transit_fees_Road_Permit = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500042')
+                 ]).mapped('debit'))
+            Transit_fees_Electronic_Seal = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500045')
+                 ]).mapped('debit'))
+            Transit_fees_Border_Fees = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500046')
+                 ]).mapped('debit'))
+            Transit_fees_First_Entry = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500047')
+                 ]).mapped('debit'))
+            Transit_fees_Lashing_Fees = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500049')
+                 ]).mapped('debit'))
+            Transit_fees_Abnormalm_Signage = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500050')
+                 ]).mapped('debit'))
+            Transit_fees_GCLA_Loading_Facilitation_Permit = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500053')
+                 ]).mapped('debit'))
+            Transit_fees_Weighbridge_Fees = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500055')
+                 ]).mapped('debit'))
+            Transit_fees_Peage = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500056')
+                 ]).mapped('debit'))
+            Transit_fees_Levy_Council_Fee_Tunduma = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500058')
+                 ]).mapped('debit'))
+            Transit_fees_Cargo_Rearrangement = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500059')
+                 ]).mapped('debit'))
+            Transit_fees_Demurrage_Fee = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500069')
+                 ]).mapped('debit'))
+            Driver_Trip_Allowance_Expense_Transit = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500096')
+                 ]).mapped('debit'))
+            Transit_fees_Bond_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500044')
+                 ]).mapped('debit'))
+            Transit_fees_TollRoad = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500048')
+                 ]).mapped('debit'))
+            Transit_fees_GCLA_Loading_Facilitation_Other_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500054')
+                 ]).mapped('debit'))
+            Toll_Gates_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500102')
+                 ]).mapped('debit'))
+            Late_Exit_Note_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500103')
+                 ]).mapped('debit'))
+            Return_fees_Container_TAX_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500104')
+                 ]).mapped('debit'))
+            Carbon_Tax_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500105')
+                 ]).mapped('debit'))
+            Return_fees_weight_pridje_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500111')
+                 ]).mapped('debit'))
+            wating_charges_going = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500113')
+                 ]).mapped('debit'))
+            mbeya = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500073')
+                 ]).mapped('debit'))
+            kibaha = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500076')
+                 ]).mapped('debit'))
+
+            morogoro = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500074')
+                 ]).mapped('debit'))
+            tunduma = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500075')
+                 ]).mapped('debit'))
             account_move_line_return_income = self.env['account.move.line'].sudo().search(
                 [('order_id', '=', order.order_id.id), ('account_id.code', 'in', account_return_income_ids),
                  ])
+            Return_fees_Carrier_License = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500061'),
+                 ]).mapped('debit'))
+            Return_fees_Peage = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500062'),
+                 ]).mapped('debit'))
+            Return_fees_Cargo_Rearrangement = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500063'),
+                 ]).mapped('debit'))
+            Return_fees_Radiation_Protection_Fee = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500064'),
+                 ]).mapped('debit'))
+            Return_fees_Weight_Check_Ndola = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500065'),
+                 ]).mapped('debit'))
+            Return_fees_Parking_Security_Fees_ret = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500066'),
+                 ]).mapped('debit'))
+            Return_fees_Levy_Council_Fee_Kapiri = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500067'),
+                 ]).mapped('debit'))
+            Return_fees_Empty_Container_Offloading_Fees = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500068'),
+                 ]).mapped('debit'))
+            Return_fees_Visa = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500070'),
+                 ]).mapped('debit'))
+            Driver_Trip_Allowance_Expense_Return = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500098'),
+                 ]).mapped('debit'))
+            Return_fees_Weight_Check_Tunduma = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500110'),
+                 ]).mapped('debit'))
+            Return_fees_Chemical_transportation = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500112'),
+                 ]).mapped('debit'))
+            Return_fees_Parking_Security_Fees = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '50070'),
+                 ]).mapped('debit'))
+            Return_fee_Over_Stay = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '50080'),
+                 ]).mapped('debit'))
+            Return_fees_Entry_Card = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '510071'),
+                 ]).mapped('debit'))
+            Return_fees_Kanyaka = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '511071'),
+                 ]).mapped('debit'))
+            Return_fees_Penalty_over_wight = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '512071'),
+                 ]).mapped('debit'))
+            Transit_fees_Bond = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500044'),
+                 ]).mapped('debit'))
+            Transit_fees_Road_Toll = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500048'),
+                 ]).mapped('debit'))
+            Transit_fees_GCLA_Loading_Facilitation_Other = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500054'),
+                 ]).mapped('debit'))
+            Toll_Gates = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500102'),
+                 ]).mapped('debit'))
+            Late_Exit_Note = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500103'),
+                 ]).mapped('debit'))
+            Return_fees_Container_TAX = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500104'),
+                 ]).mapped('debit'))
+            Carbon_Tax = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500105'),
+                 ]).mapped('debit'))
+            Return_fees_weight_pridje = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500111'),
+                 ]).mapped('debit'))
+            wating_charges = sum(self.env['account.move.line'].sudo().search(
+                [('order_id', '=', order.order_id.id), ('account_id.code', '=', '500113'),
+                 ]).mapped('debit'))
+
             account_move_line_going_income = self.env['account.move.line'].sudo().search(
                 [('order_id', '=', order.order_id.id), ('account_id.code', 'in', account_going_of_revenue_ids),
                  ])
@@ -449,6 +625,63 @@ class ReportSendMail(models.TransientModel):
                     exist.expenses = total_debit - total_credit
                     exist.cross_profit = op - expenses
                     exist.percentage = round(((op - expenses) / op * 100), 2) if op != 0 else 0
+                    exist.mbeya = mbeya
+                    exist.kibaha = kibaha
+                    exist.morogoro = morogoro
+                    exist.tunduma = tunduma
+                    exist.return_fees_carrier_license = Return_fees_Carrier_License
+                    exist.return_fees_peage = Return_fees_Peage
+                    exist.return_fees_cargo_rearrangement = Return_fees_Cargo_Rearrangement
+                    exist.return_fees_radiation_protection_fee = Return_fees_Radiation_Protection_Fee
+                    exist.return_fees_weight_check_ndola = Return_fees_Weight_Check_Ndola
+                    exist.return_fees_parking_security_fees = Return_fees_Parking_Security_Fees
+                    exist.return_fee_over_stay = Return_fee_Over_Stay
+                    exist.return_fees_entry_card = Return_fees_Entry_Card
+                    exist.return_fees_kanyaka = Return_fees_Kanyaka
+                    exist.return_fees_levy_council_fee_kapiri = Return_fees_Levy_Council_Fee_Kapiri
+                    exist.return_fees_penalty_over_wight = Return_fees_Penalty_over_wight
+                    exist.transit_fees_bond = Transit_fees_Bond
+                    exist.transit_fees_road_toll = Transit_fees_Road_Toll
+                    exist.transit_fees_gcla_loading_facilitation_other = Transit_fees_GCLA_Loading_Facilitation_Other
+                    exist.toll_gates = Toll_Gates
+                    exist.late_exit_note = Late_Exit_Note
+                    exist.return_fees_container_tax = Return_fees_Container_TAX
+                    exist.carbon_tax = Carbon_Tax
+                    exist.return_fees_weight_pridje = Return_fees_weight_pridje
+                    exist.wating_charges = wating_charges
+                    exist.return_fees_empty_container_offloading_fees = Return_fees_Empty_Container_Offloading_Fees
+                    exist.return_fees_chemical_transportation = Return_fees_Chemical_transportation
+                    exist.return_fees_visa = Return_fees_Visa
+                    exist.return_fees_weight_check_tunduma = Return_fees_Weight_Check_Tunduma
+                    exist.driver_trip_allowance_expense_return = Driver_Trip_Allowance_Expense_Return
+                    exist.return_fees_parking_security_fees_ret = Return_fees_Parking_Security_Fees_ret
+                    exist.transit_fees_documentation_fees = Transit_fees_Documentation_Fees
+                    exist.transit_fees_levy_council_fee_nakonde = Transit_fees_Levy_Council_Fee_Nakonde
+                    exist.transit_fees_levy_council_fee_kapiri = Transit_fees_Levy_Council_Fee_Kapiri
+                    exist.transit_fees_parking_security_fees_going = Transit_fees_Parking_Security_Fees_going
+                    exist.transit_fees_road_permit = Transit_fees_Road_Permit
+                    exist.transit_fees_electronic_seal = Transit_fees_Electronic_Seal
+                    exist.transit_fees_border_fees = Transit_fees_Border_Fees
+                    exist.transit_fees_first_entry = Transit_fees_First_Entry
+                    exist.transit_fees_lashing_fees = Transit_fees_Lashing_Fees
+                    exist.transit_fees_abnormalm_signage = Transit_fees_Abnormalm_Signage
+                    exist.transit_fees_gcla_loading_facilitation_permit = Transit_fees_GCLA_Loading_Facilitation_Permit
+                    exist.transit_fees_weighbridge_fees = Transit_fees_Weighbridge_Fees
+                    exist.transit_fees_peage = Transit_fees_Peage
+                    exist.transit_fees_levy_council_fee_tunduma = Transit_fees_Levy_Council_Fee_Tunduma
+                    exist.transit_fees_cargo_rearrangement = Transit_fees_Cargo_Rearrangement
+                    exist.transit_fees_demurrage_fee = Transit_fees_Demurrage_Fee
+                    exist.driver_trip_allowance_expense_transit = Driver_Trip_Allowance_Expense_Transit
+                    exist.transit_fees_bond_going = Transit_fees_Bond_going
+                    exist.transit_fees_tollRoad = Transit_fees_TollRoad
+                    exist.transit_fees_gcla_loading_facilitation_other_going = Transit_fees_GCLA_Loading_Facilitation_Other_going
+                    exist.toll_gates_going = Toll_Gates_going
+                    exist.late_exit_note_going = Late_Exit_Note_going
+                    exist.return_fees_container_tAX_going = Return_fees_Container_TAX_going
+                    exist.carbon_tax_going = Carbon_Tax_going
+                    exist.return_fees_weight_pridje_going = Return_fees_weight_pridje_going
+                    exist.wating_charges_going = wating_charges_going
+
                 else:
                     self.env['report.trip.profit'].sudo().create({'order_id': order.order_id.id,
                                                                   'date': order.order_id.date_order.date(),
@@ -468,7 +701,63 @@ class ReportSendMail(models.TransientModel):
                                                                   'cross_profit': op - expenses,
                                                                   'percentage': round(((
                                                                                                op - expenses) / op * 100),
-                                                                                      2) if op != 0 else 0
+                                                                                      2) if op != 0 else 0,
+                                                                  "mbeya": mbeya,
+                                                                  "kibaha": kibaha,
+                                                                  "morogoro": morogoro,
+                                                                  "tunduma": tunduma,
+                                                                  "return_fees_carrier_license": Return_fees_Carrier_License,
+                                                                  "return_fees_peage": Return_fees_Peage,
+                                                                  "return_fees_cargo_rearrangement": Return_fees_Cargo_Rearrangement,
+                                                                  "return_fees_radiation_protection_fee": Return_fees_Radiation_Protection_Fee,
+                                                                  "return_fees_weight_check_ndola": Return_fees_Weight_Check_Ndola,
+                                                                  "return_fees_parking_security_fees": Return_fees_Parking_Security_Fees,
+                                                                  "return_fee_over_stay": Return_fee_Over_Stay,
+                                                                  "return_fees_entry_card": Return_fees_Entry_Card,
+                                                                  "return_fees_kanyaka": Return_fees_Kanyaka,
+                                                                  "return_fees_levy_council_fee_kapiri": Return_fees_Levy_Council_Fee_Kapiri,
+                                                                  "return_fees_penalty_over_wight": Return_fees_Penalty_over_wight,
+                                                                  "transit_fees_bond": Transit_fees_Bond,
+                                                                  "transit_fees_road_toll": Transit_fees_Road_Toll,
+                                                                  "transit_fees_gcla_loading_facilitation_other": Transit_fees_GCLA_Loading_Facilitation_Other,
+                                                                  "toll_gates": Toll_Gates,
+                                                                  "late_exit_note": Late_Exit_Note,
+                                                                  "return_fees_container_tax": Return_fees_Container_TAX,
+                                                                  "carbon_tax": Carbon_Tax,
+                                                                  "return_fees_weight_pridje": Return_fees_weight_pridje,
+                                                                  "wating_charges": wating_charges,
+                                                                  "return_fees_empty_container_offloading_fees": Return_fees_Empty_Container_Offloading_Fees,
+                                                                  "return_fees_chemical_transportation": Return_fees_Chemical_transportation,
+                                                                  "return_fees_visa": Return_fees_Visa,
+                                                                  "return_fees_weight_check_tunduma": Return_fees_Weight_Check_Tunduma,
+                                                                  "driver_trip_allowance_expense_return": Driver_Trip_Allowance_Expense_Return,
+                                                                  'return_fees_parking_security_fees_ret': Return_fees_Parking_Security_Fees_ret,
+                                                                  "transit_fees_documentation_fees": Transit_fees_Documentation_Fees,
+                                                                  "transit_fees_levy_council_fee_nakonde": Transit_fees_Levy_Council_Fee_Nakonde,
+                                                                  "transit_fees_levy_council_fee_kapiri": Transit_fees_Levy_Council_Fee_Kapiri,
+                                                                  "transit_fees_parking_security_fees_going": Transit_fees_Parking_Security_Fees_going,
+                                                                  "transit_fees_road_permit": Transit_fees_Road_Permit,
+                                                                  "transit_fees_electronic_seal": Transit_fees_Electronic_Seal,
+                                                                  "transit_fees_border_fees": Transit_fees_Border_Fees,
+                                                                  "transit_fees_first_entry": Transit_fees_First_Entry,
+                                                                  "transit_fees_lashing_fees": Transit_fees_Lashing_Fees,
+                                                                  "transit_fees_abnormalm_signage": Transit_fees_Abnormalm_Signage,
+                                                                  "transit_fees_gcla_loading_facilitation_permit": Transit_fees_GCLA_Loading_Facilitation_Permit,
+                                                                  "transit_fees_weighbridge_fees": Transit_fees_Weighbridge_Fees,
+                                                                  "transit_fees_peage": Transit_fees_Peage,
+                                                                  "transit_fees_levy_council_fee_tunduma": Transit_fees_Levy_Council_Fee_Tunduma,
+                                                                  "transit_fees_cargo_rearrangement": Transit_fees_Cargo_Rearrangement,
+                                                                  "transit_fees_demurrage_fee": Transit_fees_Demurrage_Fee,
+                                                                  "driver_trip_allowance_expense_transit": Driver_Trip_Allowance_Expense_Transit,
+                                                                  "transit_fees_bond_going": Transit_fees_Bond_going,
+                                                                  "transit_fees_tollRoad": Transit_fees_TollRoad,
+                                                                  "transit_fees_gcla_loading_facilitation_other_going": Transit_fees_GCLA_Loading_Facilitation_Other_going,
+                                                                  "toll_gates_going": Toll_Gates_going,
+                                                                  "late_exit_note_going": Late_Exit_Note_going,
+                                                                  "return_fees_container_tAX_going": Return_fees_Container_TAX_going,
+                                                                  "carbon_tax_going": Carbon_Tax_going,
+                                                                  "return_fees_weight_pridje_going": Return_fees_weight_pridje_going,
+                                                                  "wating_charges_going": wating_charges_going
                                                                   })
         return {
             'name': 'Report Trip Profit',
