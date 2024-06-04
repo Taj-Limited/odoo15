@@ -765,6 +765,8 @@ class ReportSendMail(models.TransientModel):
             'view_type': 'form',
             'view_mode': 'tree,form',
             'res_model': 'report.trip.profit',
+            'context': {'group_by': 'truck'}
+
             # 'views': [(treeview_id, 'tree')],
             # 'target': 'new',
         }
