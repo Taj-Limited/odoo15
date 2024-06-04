@@ -73,9 +73,9 @@ class ReportSendMail(models.TransientModel):
             orders = self.env['sale.order'].sudo().search([])
         order_ids = []
         data = []
-        # typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
-        # typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
-        #     [('name', '=', 'Cost of Revenue')])
+        typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
+        typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
+            [('name', '=', 'Cost of Revenue')])
         account_fuel_ids = ['500073', '500074', '500075', '500076', '500077']
         account_return_income_ids = ['500061', '500062', '500063', '500064', '500065', '500066', '500067', '500068',
                                      '500070', '500098', '500110', '500112', '50070', '50080', '510071', '511071',
@@ -389,9 +389,9 @@ class ReportSendMail(models.TransientModel):
             orders = self.env['sale.order'].sudo().search([])
         order_ids = []
         data = []
-        # typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
-        # typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
-        #     [('name', '=', 'Cost of Revenue')])
+        typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
+        typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
+            [('name', '=', 'Cost of Revenue')])
         account_fuel_ids = ['500073', '500074', '500075', '500076', '500077']
         account_return_income_ids = ['500061', '500062', '500063', '500064', '500065', '500066', '500067', '500068',
                                      '500070', '500098', '500110', '500112', '50070', '50080', '510071', '511071',

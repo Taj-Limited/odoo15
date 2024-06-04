@@ -83,7 +83,7 @@
                      <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
 				</xpath>
 
-            <xpath expr="//span[@id='payment_terms_note_id']" position="after">
+            <xpath expr="//p[@name='payment_term']" position="after">
                 <p >Account Name : TAJ TRUCKING LIMITED</p>
                 <p>Account No. USD : 05233990011 </p>
                 <p >Swift Transfer : EUAFTZTZ</p>
