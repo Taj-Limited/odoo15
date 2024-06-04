@@ -12,13 +12,70 @@
                 <field name="size"/>
                 <field name="date"/>
                 <field name="operating_income"/>
+                <field name="transit_fees_documentation_fees" optional="hide"/>
+                <field name="transit_fees_levy_council_fee_nakonde" optional="hide"/>
+                <field name="transit_fees_levy_council_fee_kapiri" optional="hide"/>
+                <field name="transit_fees_parking_security_fees_going" optional="hide"/>
+                <field name="transit_fees_road_permit" optional="hide"/>
+                <field name="transit_fees_electronic_seal" optional="hide"/>
+                <field name="transit_fees_border_fees" optional="hide"/>
+                <field name="transit_fees_first_entry" optional="hide"/>
+                <field name="transit_fees_abnormalm_signage" optional="hide"/>
+                <field name="transit_fees_gcla_loading_facilitation_permit" optional="hide"/>
+                <field name="transit_fees_weighbridge_fees" optional="hide"/>
+                <field name="transit_fees_peage" optional="hide"/>
+                <field name="transit_fees_levy_council_fee_tunduma" optional="hide"/>
+                <field name="transit_fees_cargo_rearrangement" optional="hide"/>
+                <field name="transit_fees_demurrage_fee" optional="hide"/>
+                <field name="driver_trip_allowance_expense_transit" optional="hide"/>
+                <field name="transit_fees_bond_going" optional="hide"/>
+                <field name="transit_fees_tollRoad" optional="hide"/>
+                <field name="transit_fees_gcla_loading_facilitation_other_going" optional="hide"/>
+                <field name="toll_gates_going" optional="hide"/>
+                <field name="return_fees_container_tAX_going" optional="hide"/>
+                <field name="late_exit_note_going" optional="hide"/>
+                <field name="carbon_tax_going" optional="hide"/>
+                <field name="return_fees_weight_pridje_going" optional="hide"/>
+                <field name="wating_charges_going" optional="hide"/>
                 <field name="total_going"/>
-                <field name="total_return"/>
+                <field name="mbeya" optional="hide"/>
+                <field name="kibaha" optional="hide"/>
+                <field name="morogoro" optional="hide"/>
+                <field name="tunduma" optional="hide"/>
                 <field name="total_fuel"/>
+                <field name="return_fees_carrier_license" optional="hide"/>
+                <field name="return_fee_over_stay" optional="hide"/>
+                <field name="return_fees_cargo_rearrangement" optional="hide"/>
+                <field name="return_fees_radiation_protection_fee" optional="hide"/>
+                <field name="return_fees_weight_check_ndola" optional="hide"/>
+                <field name="return_fees_parking_security_fees" optional="hide"/>
+                <field name="return_fee_over_stay_2" optional="hide"/>
+                <field name="return_fees_entry_card" optional="hide"/>
+                <field name="return_fees_kanyaka" optional="hide"/>
+                <field name="return_fees_levy_council_fee_kapiri" optional="hide"/>
+                <field name="return_fees_penalty_over_wight" optional="hide"/>
+                <field name="transit_fees_bond" optional="hide"/>
+                <field name="transit_fees_road_toll" optional="hide"/>
+                <field name="transit_fees_gcla_loading_facilitation_other" optional="hide"/>
+                <field name="toll_gates" optional="hide"/>
+                <field name="late_exit_note" optional="hide"/>
+                <field name="return_fees_container_tax" optional="hide"/>
+                <field name="carbon_tax" optional="hide"/>
+                <field name="return_fees_weight_pridje" optional="hide"/>
+                <field name="wating_charges" optional="hide"/>
+                <field name="return_fees_empty_container_offloading_fees" optional="hide"/>
+                <field name="return_fees_visa" optional="hide"/>
+                <field name="return_fees_weight_check_tunduma" optional="hide"/>
+                <field name="return_fees_chemical_transportation" optional="hide"/>
+                <field name="driver_trip_allowance_expense_return" optional="hide"/>
+                <field name="return_fees_parking_security_fees_ret" optional="hide"/>
+                <field name="total_return"/>
                 <field name="total_cost"/>
                 <field name="expenses"/>
                 <field name="cross_profit"/>
                 <field name="percentage"/>
+                <!--                <button name="view_details" type="object"-->
+                <!--                        string="View"/>-->
             </tree>
         </field>
     </record>
