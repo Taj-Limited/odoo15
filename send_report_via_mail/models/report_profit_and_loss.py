@@ -90,7 +90,7 @@ class ReportTajProfitExcel(models.AbstractModel):
         sheet.write(0, 64, 'Return fees Parking Security Fees', total_return_details)
         sheet.write(0, 65, 'Total Return', total_return_details)
         sheet.write(0, 66, 'Expenses', bold)
-        sheet.write(0, 67, 'Cross Profit', bold)
+        sheet.write(0, 67, 'Gross Profit', bold)
         sheet.write(0, 68, '%', bold)
 
         # sheet.write(0, 13, 'Details', bold)
