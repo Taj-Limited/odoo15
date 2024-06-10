@@ -20,7 +20,7 @@ class ReportTripProfit(models.Model):
     total_cost = fields.Float("Total Cost")
     expenses = fields.Float("Expenses")
     cross_profit = fields.Float('Cross Profit')
-    percentage = fields.Float('%')
+    percentage = fields.Float('%', group_operator=False)
     mbeya = fields.Float('Mbeya')
     kibaha = fields.Float('Kibaha')
     morogoro = fields.Float('Morogoro')
