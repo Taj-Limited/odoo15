@@ -79,3 +79,7 @@ class ReportTripProfit(models.Model):
     driver_trip_allowance_expense_return = fields.Float('Driver Trip Allowance Expense Return')
     return_fees_parking_security_fees_ret = fields.Float('Return fees Parking Security Fees')
     return_fees_peage = fields.Float('Return Fees peage')
+    levy_council_fee_tanzania = fields.Float('Levy council fee Tanzania')
+    levy_council_fee_kenya = fields.Float('Levy council fee Kenya')
+    mineral_tax_kenya = fields.Float('Mineral Tax Kenya')
+    ferry_fees = fields.Float('Ferry Fees')

@@ -88,10 +88,14 @@ class ReportTajProfitExcel(models.AbstractModel):
         sheet.write(0, 62, 'Return fees Chemical transportation', total_return_details)
         sheet.write(0, 63, 'Driver Trip Allowance Expense Return', total_return_details)
         sheet.write(0, 64, 'Return fees Parking Security Fees', total_return_details)
-        sheet.write(0, 65, 'Total Return', total_return_details)
-        sheet.write(0, 66, 'Expenses', bold)
-        sheet.write(0, 67, 'Gross Profit', bold)
-        sheet.write(0, 68, '%', bold)
+        sheet.write(0, 65, 'Levy council fee Tanzania', total_return_details)
+        sheet.write(0, 66, 'Levy council fee Kenya', total_return_details)
+        sheet.write(0, 67, 'Mineral Tax Kenya', total_return_details)
+        sheet.write(0, 68, 'Ferry Fees', total_return_details)
+        sheet.write(0, 69, 'Total Return', total_return_details)
+        sheet.write(0, 70, 'Expenses', bold)
+        sheet.write(0, 71, 'Gross Profit', bold)
+        sheet.write(0, 72, '%', bold)
 
         # sheet.write(0, 13, 'Details', bold)
 
@@ -171,10 +175,14 @@ class ReportTajProfitExcel(models.AbstractModel):
             sheet.write(row, 62, obj['Return_fees_Chemical_transportation'], total_return_details)
             sheet.write(row, 63, obj['Driver_Trip_Allowance_Expense_Return'], total_return_details)
             sheet.write(row, 64, obj['Return_fees_Parking_Security_Fees_ret'], total_return_details)
-            sheet.write(row, 65, obj['total_return'], total_return_details)
-            sheet.write(row, 66, obj['expenses'], bold)
-            sheet.write(row, 67, obj['cross_profit'], bold)
-            sheet.write(row, 68,
+            sheet.write(row, 65, obj['Levy_council_fee_Tanzania'], total_return_details)
+            sheet.write(row, 66, obj['Levy_council_fee_Kenya'], total_return_details)
+            sheet.write(row, 67, obj['Mineral_Tax_Kenya'], total_return_details)
+            sheet.write(row, 68, obj['Ferry_Fees'], total_return_details)
+            sheet.write(row, 69, obj['total_return'], total_return_details)
+            sheet.write(row, 70, obj['expenses'], bold)
+            sheet.write(row, 71, obj['cross_profit'], bold)
+            sheet.write(row, 72,
                         (round(obj['cross_profit'] / obj['operating_income'] * 100, 2)) if obj[
                                                                                                'operating_income'] != 0 else 0,
                         bold)

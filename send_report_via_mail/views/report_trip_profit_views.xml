@@ -69,6 +69,10 @@
                 <field name="return_fees_chemical_transportation" optional="hide"/>
                 <field name="driver_trip_allowance_expense_return" optional="hide"/>
                 <field name="return_fees_parking_security_fees_ret" optional="hide"/>
+                <field name="levy_council_fee_tanzania" optional="hide"/>
+                <field name="levy_council_fee_kenya" optional="hide"/>
+                <field name="mineral_tax_kenya" optional="hide"/>
+                <field name="ferry_fees" optional="hide"/>
                 <field name="total_return"/>
                 <field name="total_cost"/>
                 <field name="expenses"/>
