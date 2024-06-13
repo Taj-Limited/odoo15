@@ -793,7 +793,7 @@ class ReportSendMail(models.TransientModel):
                                                                   "wating_charges_going": wating_charges_going,
                                                                   "levy_council_fee_tanzania": Levy_council_fee_Tanzania,
                                                                   "levy_council_fee_kenya": Levy_council_fee_Kenya,
-                                                                  "mineral_tax_kenya ": Mineral_Tax_Kenya,
+                                                                  "mineral_tax_kenya": Mineral_Tax_Kenya,
                                                                   "ferry_fees": Ferry_Fees
                                                                   })
         return {
