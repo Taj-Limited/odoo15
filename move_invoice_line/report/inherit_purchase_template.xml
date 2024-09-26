@@ -6,17 +6,29 @@
             <field name="inherit_id" ref="purchase.report_purchaseorder_document"/>
             <field name="arch" type="xml">
                 <xpath expr="//t[@t-set='information_block']" position="replace">
-                    <t>
-                        <span></span>
+                    <t t-set="information_block">
+                        <strong>Shipping addre:</strong>
+                        <div t-if="o.dest_address_id">
+                            <span></span>
+                        </div>
                     </t>
                 </xpath>
                 <xpath expr="//table[@class='table table-sm o_main_table']" position="replace">
-
                     <table class="table table-sm o_main_table">
                         <thead>
                             <tr>
                                 <th name="th_description">
-                                    <strong>description</strong>
+                                    <strong>Station</strong>
+                                </th>
+
+                                <th name="th_description" style="width:100px;" >
+                                    <strong>Truck Number</strong>
+                                </th>
+                                <th name="th_description" style="width:100px;">
+                                    <strong>Rout</strong>
+                                </th>
+                                <th name="th_description" style="width:100px;">
+                                    <strong>Cargo Type</strong>
                                 </th>
                                 <th name="th_taxes">
                                     <strong>Taxes</strong>
@@ -48,6 +60,22 @@
                                         <td id="product">
                                             <span t-field="line.name"/>
                                         </td>
+                                        <td id="product" style="width:100px;">
+                                            <span t-field="line.account_analytic_id.name"/>
+                                        </td>
+                                        <t t-if="len(line.analytic_tag_ids) == 2">
+                                            <td id="product" style="width:100px;">
+                                                <span t-field="line.analytic_tag_ids[0].name"/>
+                                            </td>
+                                            <td id="product" style="width:100px;">
+                                                <span t-field="line.analytic_tag_ids[1].name"/>
+                                            </td>
+                                        </t>
+                                        <t t-if="len(line.analytic_tag_ids) == 1">
+                                            <td id="product" style="width:100px;">
+                                                <span t-field="line.analytic_tag_ids[0].name"/>
+                                            </td>
+                                        </t>
                                         <td name="td_taxes">
                                             <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>
                                         </td>
