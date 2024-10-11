@@ -85,13 +85,22 @@
                                         <td id="product" style="width:100px;">
                                             <span t-field="line.order_id.sale_order_id.order_line[0].container_num"/>
                                         </td>
-                                        <td id="product" style="width:100px;">
-                                            <span t-field="line.rout_analytic"/>
-                                        </td>
-                                        <td id="product" style="width:100px;">
-                                            <span t-field="line.cargo"/>
-                                        </td>
-
+                                        <t t-if="'Cargo' not in line.analytic_tag_ids[0].name">
+                                            <td id="product" style="width:100px;">
+                                                <span t-field="line.analytic_tag_ids[0].name"/>
+                                            </td>
+                                            <td id="product" style="width:100px;">
+                                                <span t-field="line.analytic_tag_ids[1].name"/>
+                                            </td>
+                                        </t>
+                                        <t t-if="'Cargo' in line.analytic_tag_ids[0].name">
+                                            <td id="product" style="width:100px;">
+                                                <span t-field="line.analytic_tag_ids[1].name"/>
+                                            </td>
+                                            <td id="product" style="width:100px;">
+                                                <span t-field="line.analytic_tag_ids[0].name"/>
+                                            </td>
+                                        </t>
                                         <!--                                        <td name="td_taxes">-->
                                         <!--                                            <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>-->
                                         <!--                                        </td>-->

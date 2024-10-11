@@ -23,20 +23,3 @@ class PurchaseOrderInherit(models.Model):
                     rec_line.vehicle_id = rec.vehicle_id
                     rec_line.order_id = rec.order_id.id
                     rec_line.route_id = rec.id
-    @api.onchange('order_line')
-    def set_cargo_type(self):
-        for rec in self:
-            for line in rec.order_line:
-                if line.analytic_tag_ids:
-                    for record in line.analytic_tag_ids:
-                        if 'Cargo' in record.name:
-                            line.cargo = record.name
-                        else:
-                            line.rout_analytic = record.name
-
-
-class PurchaseOrderLineInherit(models.Model):
-    _inherit = 'purchase.order.line'
-
-    cargo = fields.Text('Cargo')
-    rout_analytic = fields.Text('Rout')
