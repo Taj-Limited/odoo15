@@ -7,10 +7,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[@id='informations']" position="replace">
                     <div id="informations" class="row mt32 mb32">
-<!--                        <div t-if="o.user_id" class="col-3 bm-2">-->
-<!--                            <strong>Purchase Representative:</strong>-->
-<!--                            <p t-field="o.user_id" class="m-0"/>-->
-<!--                        </div>-->
+                        <!--                        <div t-if="o.user_id" class="col-3 bm-2">-->
+                        <!--                            <strong>Purchase Representative:</strong>-->
+                        <!--                            <p t-field="o.user_id" class="m-0"/>-->
+                        <!--                        </div>-->
                         <div t-if="o.partner_ref" class="col-3 bm-2">
                             <strong>Your Order Reference:</strong>
                             <p t-field="o.partner_ref" class="m-0"/>
@@ -22,11 +22,11 @@
                     </div>
                 </xpath>
                 <xpath expr="//t[@t-set='information_block']" position="replace">
-                    <t t-set="information_block"  t-value="False">
-<!--                        <strong>Shipping addre:</strong>-->
-<!--                        <div t-if="o.dest_address_id">-->
-<!--                            <span></span>-->
-<!--                        </div>-->
+                    <t t-set="information_block" t-value="False">
+                        <!--                        <strong>Shipping addre:</strong>-->
+                        <!--                        <div t-if="o.dest_address_id">-->
+                        <!--                            <span></span>-->
+                        <!--                        </div>-->
                     </t>
                 </xpath>
                 <xpath expr="//table[@class='table table-sm o_main_table']" position="replace">
@@ -85,19 +85,13 @@
                                         <td id="product" style="width:100px;">
                                             <span t-field="line.order_id.sale_order_id.order_line[0].container_num"/>
                                         </td>
-                                        <t t-if="len(line.analytic_tag_ids) == 2">
-                                            <td id="product" style="width:100px;">
-                                                <span t-field="line.analytic_tag_ids[0].name"/>
-                                            </td>
-                                            <td id="product" style="width:100px;">
-                                                <span t-field="line.analytic_tag_ids[1].name"/>
-                                            </td>
-                                        </t>
-                                        <t t-if="len(line.analytic_tag_ids) == 1">
-                                            <td id="product" style="width:100px;">
-                                                <span t-field="line.analytic_tag_ids[0].name"/>
-                                            </td>
-                                        </t>
+                                        <td id="product" style="width:100px;">
+                                            <span t-field="line.rout_analytic"/>
+                                        </td>
+                                        <td id="product" style="width:100px;">
+                                            <span t-field="line.cargo"/>
+                                        </td>
+
                                         <!--                                        <td name="td_taxes">-->
                                         <!--                                            <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>-->
                                         <!--                                        </td>-->
