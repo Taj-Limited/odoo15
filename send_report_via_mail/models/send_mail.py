@@ -73,9 +73,9 @@ class ReportSendMail(models.TransientModel):
             orders = self.env['sale.order'].sudo().search([])
         order_ids = []
         data = []
-        typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
-        typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
-            [('name', '=', 'Cost of Revenue')])
+        # typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
+        # typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
+        #     [('name', '=', 'Cost of Revenue')])
         account_fuel_ids = ['500073', '500074', '500075', '500076', '500077']
         account_return_income_ids = ['500061', '500062', '500063', '500064', '500065', '500066', '500067', '500068',
                                      '500070', '500098', '500110', '500112', '50070', '50080', '510071', '511071',
@@ -350,10 +350,6 @@ class ReportSendMail(models.TransientModel):
                              "Return_fees_Chemical_transportation": Return_fees_Chemical_transportation,
                              "Return_fees_Visa": Return_fees_Visa,
                              "Return_fees_Weight_Check_Tunduma": Return_fees_Weight_Check_Tunduma,
-                             "Levy_council_fee_Tanzania": Levy_council_fee_Tanzania,
-                             "Levy_council_fee_Kenya": Levy_council_fee_Kenya,
-                             "Mineral_Tax_Kenya": Mineral_Tax_Kenya,
-                             "Ferry_Fees": Ferry_Fees,
                              "Driver_Trip_Allowance_Expense_Return": Driver_Trip_Allowance_Expense_Return,
                              'Return_fees_Parking_Security_Fees_ret': Return_fees_Parking_Security_Fees_ret,
                              "Transit_fees_Documentation_Fees": Transit_fees_Documentation_Fees,
@@ -403,12 +399,11 @@ class ReportSendMail(models.TransientModel):
             orders = self.env['sale.order'].sudo().search([('date_order', '>', from_d), ('date_order', '<=', to_d)])
         else:
             orders = self.env['sale.order'].sudo().search([])
-        print("orders", orders)
         order_ids = []
         data = []
-        typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
-        typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
-            [('name', '=', 'Cost of Revenue')])
+        # typ_of_account_income = self.env['account.account.type'].sudo().search([('name', '=', 'Income')])
+        # typ_of_account_cost_of_revenue = self.env['account.account.type'].sudo().search(
+        #     [('name', '=', 'Cost of Revenue')])
         account_fuel_ids = ['500073', '500074', '500075', '500076', '500077']
         account_return_income_ids = ['500061', '500062', '500063', '500064', '500065', '500066', '500067', '500068',
                                      '500070', '500098', '500110', '500112', '50070', '50080', '510071', '511071',
@@ -710,10 +705,6 @@ class ReportSendMail(models.TransientModel):
                     exist.carbon_tax_going = Carbon_Tax_going
                     exist.return_fees_weight_pridje_going = Return_fees_weight_pridje_going
                     exist.wating_charges_going = wating_charges_going
-                    exist.levy_council_fee_tanzania = Levy_council_fee_Tanzania
-                    exist.levy_council_fee_kenya = Levy_council_fee_Kenya
-                    exist.mineral_tax_kenya = Mineral_Tax_Kenya
-                    exist.ferry_fees = Ferry_Fees
 
                 else:
                     self.env['report.trip.profit'].sudo().create({'order_id': order.order_id.id,
@@ -790,11 +781,7 @@ class ReportSendMail(models.TransientModel):
                                                                   "return_fees_container_tAX_going": Return_fees_Container_TAX_going,
                                                                   "carbon_tax_going": Carbon_Tax_going,
                                                                   "return_fees_weight_pridje_going": Return_fees_weight_pridje_going,
-                                                                  "wating_charges_going": wating_charges_going,
-                                                                  "levy_council_fee_tanzania": Levy_council_fee_Tanzania,
-                                                                  "levy_council_fee_kenya": Levy_council_fee_Kenya,
-                                                                  "mineral_tax_kenya": Mineral_Tax_Kenya,
-                                                                  "ferry_fees": Ferry_Fees
+                                                                  "wating_charges_going": wating_charges_going
                                                                   })
         return {
             'name': 'Report Trip Profit',
