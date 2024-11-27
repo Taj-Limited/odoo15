@@ -24,7 +24,5 @@ class AccountMoveLine(models.Model):
         self.size = self.route_id.size
         self.srn = self.route_id.srn
         self.vehicle_id = self.route_id.vehicle_id
-       # self.analytic_account_id = self.route_id.analytic_account_id
+        # self.analytic_account_id = self.route_id.analytic_account_id
         self.analytic_tag_ids = self.route_id.analytic_tag_ids
-
-
