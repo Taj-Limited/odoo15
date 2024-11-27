@@ -20,6 +20,6 @@ class PurchaseOrderInherit(models.Model):
                     rec_line.weight = rec.weight
                     rec_line.size = rec.size
                     rec_line.srn = rec.srn
-                    rec_line.vehicle_id = rec.vehicle_id
+                    rec_line.vehicle_id = rec.vehicle_id.id
                     rec_line.order_id = rec.order_id.id
                     rec_line.route_id = rec.id
