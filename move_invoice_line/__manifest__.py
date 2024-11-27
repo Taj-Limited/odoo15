@@ -36,7 +36,7 @@
         'views/invoice_views.xml',
         'views/inherit_partner.xml',
         'views/inherit_purchase_order_views.xml',
-        # 'report/inherit_purchase_template.xml'
+        'report/inherit_purchase_template.xml'
 
     ],
     'qweb': [],
