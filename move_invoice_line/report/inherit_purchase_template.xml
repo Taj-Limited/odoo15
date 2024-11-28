@@ -30,7 +30,7 @@
                         <!--                        </div>-->
                     </t>
                 </xpath>
-                <xpath expr="//table[hasclass('table table-sm o_main_table')]" position="replace">
+                <xpath expr="//table[@class='table table-sm o_main_table'][1]" position="replace">
                     <table class="table table-sm o_main_table">
                         <thead>
                             <tr>
