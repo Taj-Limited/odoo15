@@ -44,12 +44,12 @@
                                 <th name="th_description" style="width:100px;">
                                     <strong>Container</strong>
                                 </th>
-                                <th name="th_description" style="width:100px;">
-                                    <strong>Rout</strong>
-                                </th>
-                                <th name="th_description" style="width:100px;">
-                                    <strong>Cargo Type</strong>
-                                </th>
+<!--                                <th name="th_description" style="width:100px;">-->
+<!--                                    <strong>Rout</strong>-->
+<!--                                </th>-->
+<!--                                <th name="th_description" style="width:100px;">-->
+<!--                                    <strong>Cargo Type</strong>-->
+<!--                                </th>-->
                                 <!--                                <th name="th_taxes">-->
                                 <!--                                    <strong>Taxes</strong>-->
                                 <!--                                </th>-->
