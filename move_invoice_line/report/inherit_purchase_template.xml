@@ -82,7 +82,7 @@
                                         </td>
                                         <td id="product" style="width:100px;">
                                             <t t-foreach="line.analytic_distribution.keys()" t-as="key">
-                                                <span t-field="line.analytic_distribution.get[key]"/>
+                                                <span t-esc="line.analytic_distribution.get[key]"/>
                                             </t>
                                         </td>
                                         <td id="product" style="width:100px;">
