@@ -8,6 +8,7 @@ _logger = logging.getLogger(__name__)
 class ReportTajProfitExcel(models.AbstractModel):
     _name = 'report.send_report_via_mail.profit_loss_report'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'Profit Loss Report'
 
     def generate_xlsx_report(self, workbook, data, partners):
         # print('data:::', data['products'])
@@ -87,7 +88,7 @@ class ReportTajProfitExcel(models.AbstractModel):
         sheet.write(0, 61, 'Return fees Weight Check Tunduma', total_return_details)
         sheet.write(0, 62, 'Return fees Chemical transportation', total_return_details)
         sheet.write(0, 63, 'Driver Trip Allowance Expense Return', total_return_details)
-        sheet.write(0, 64, 'Return fees Parking Security Fees', total_return_details)
+        sheet.write(0, 64, 'Return fees Parking Security Fees Ret', total_return_details)
         sheet.write(0, 65, 'Total Return', total_return_details)
         sheet.write(0, 66, 'Expenses', bold)
         sheet.write(0, 67, 'Gross Profit', bold)

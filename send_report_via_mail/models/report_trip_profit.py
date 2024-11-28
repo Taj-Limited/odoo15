@@ -77,5 +77,5 @@ class ReportTripProfit(models.Model):
     return_fees_weight_check_tunduma = fields.Float('Return fees Weight Check Tunduma')
     return_fees_chemical_transportation = fields.Float('Return fees Chemical transportation')
     driver_trip_allowance_expense_return = fields.Float('Driver Trip Allowance Expense Return')
-    return_fees_parking_security_fees_ret = fields.Float('Return fees Parking Security Fees')
+    return_fees_parking_security_fees_ret = fields.Float('Return fees Parking Security Fees Ret')
     return_fees_peage = fields.Float('Return Fees peage')
