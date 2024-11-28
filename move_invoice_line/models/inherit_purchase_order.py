@@ -35,3 +35,6 @@ class PurchaseOrderInherit(models.Model):
                 _logger.info(f'mammamamm')
                 if line.analytic_distribution:
                     _logger.info(f'line.analytic_distribution{line.analytic_distribution}')
+                    _logger.info(f'line.analytic_distribution{line.analytic_distribution}')
+                    for key in line.analytic_distribution.keys():
+                        _logger.info(f'key::::{key}')
