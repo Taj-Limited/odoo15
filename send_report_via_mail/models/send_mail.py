@@ -15,8 +15,8 @@ class ReportSendMail(models.TransientModel):
     to_date = fields.Date('To Date')
 
     def send_email_with_pdf_attach(self):
-        report_payable = self.env["account.aged.payable"]
-        report_receivable = self.env["account.aged.receivable"]
+        report_payable = self.env["account.aged.payable.report.handler"]
+        report_receivable = self.env["account.aged.receivable.report.handler"]
         payable_options = report_payable._get_options()
         receivable_options = report_receivable._get_options()
         file_payable = report_payable.get_pdf(payable_options)
