@@ -1,98 +1,122 @@
 <?xml version="1.0"?>
 <odoo>
-<data>
-    <record id="report_invoice_document_inherit" model="ir.ui.view">
-        <field name="name">taj_report_invoice_document</field>
-        <field name="inherit_id" ref="account.report_invoice_document"/>
-        <field name="arch" type="xml">
+    <data>
+        <record id="report_invoice_document_inherit" model="ir.ui.view">
+            <field name="name">taj_report_invoice_document</field>
+            <field name="inherit_id" ref="account.report_invoice_document"/>
+            <field name="arch" type="xml">
                 <xpath expr="//table[@name='invoice_line_table']" position='before'>
-                    <table class="col-sm-7 col-md-6 ml-auto">
-                      <tr>
-                          <td> <span >  <strong>Exchange Rate: </strong></span></td>
-                          <td class="text-right">  <span  t-esc="'{0:,.2f}'.format(int(o.amount_total_signed/o.amount_total))" /></td>
-                      </tr>
-                </table>
-              </xpath>
-             <xpath expr="//t[@t-set='tax_totals']" position='after'>
+                    <!--                    <table class="col-sm-7 col-md-6 ml-auto">-->
+                    <!--                      <tr>-->
+                    <!--                          <td> <span >  <strong>Exchange Rate: </strong></span></td>-->
+                    <!--                          <td class="text-right">  <span  t-esc="'{0:,.2f}'.format(int(o.amount_total_signed/o.amount_total))" /></td>-->
+                    <!--                      </tr>-->
+                    <!--                </table>-->
+                    <div class="row text-left">
+                        <div class="col-2">
+                            <span>
+                                <strong>Exchange Rate:</strong>
+                            </span>
+                        </div>
+                        <div class="col-5">
+                            <span>
+                                <strong t-esc="'{0:,.2f}'.format(int(o.amount_total_signed/o.amount_total))"></strong>
+                            </span>
+                        </div>
+                    </div>
+                </xpath>
+                <xpath expr="//t[@t-set='tax_totals']" position='after'>
 
-                      <tr>
-                          <td> <span >  <strong>Total TSH </strong></span></td>
-                          <td class="text-right">  <span t-field="o.amount_total_signed"/></td>
-                      </tr>
+                    <tr>
+                        <td>
+                            <span>
+                                <strong>Total TSH</strong>
+                            </span>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="o.amount_total_signed"/>
+                        </td>
+                    </tr>
 
-              </xpath>
-                <xpath expr="//t[@t-set='address']"  position="replace">
-                    <div  class="mt16"></div>
-                     <div class="col-sm-12 ml-auto" style="z-index: 9999;display: block;position: relative;color:black;">
-                        <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                </xpath>
+                <xpath expr="//t[@t-set='address']" position="replace">
+                    <div class="mt16"></div>
+                    <div class="col-sm-12 ml-auto" style="z-index: 9999;display: block;position: relative;color:black;">
+                        <address t-field="o.partner_id"
+                                 t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
                         <div t-if="o.partner_id.vat" class="mt16">
-                            <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
-                            <t t-else="">TIN NO</t>: <span t-field="o.partner_id.vat"/></div>
-                         <t t-if="o.partner_id.vrn">VRN NO: <span t-field="o.partner_id.vrn"/></t>
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label"
+                               t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">TIN NO</t>:
+                            <span t-field="o.partner_id.vat"/>
+                        </div>
+                        <t t-if="o.partner_id.vrn">VRN NO:
+                            <span t-field="o.partner_id.vrn"/>
+                        </t>
                     </div>
                 </xpath>
 
-                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
-                     <th>Truck</th>
-                     <th> Container Number</th>
-                      <th>Consignee</th>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
+                    <th>Truck</th>
+                    <th>Container Number</th>
+                    <th>Consignee</th>
 
-            
-				</xpath>
 
-				<xpath expr="//t[@name='account_invoice_line_accountable']/td[1]" position="after">
-					<td >
-					 <span t-if="line.vehicle_id" t-field="line.vehicle_id.license_plate"/>
+                </xpath>
 
-					</td>
-                    <td >
-					 <span t-if="line.vehicle_id" t-field="line.container_num"/>
+                <xpath expr="//t[@name='account_invoice_line_accountable']/td[1]" position="after">
+                    <td>
+                        <span t-if="line.vehicle_id" t-field="line.vehicle_id.license_plate"/>
 
-					</td>
-                    <td >
-					 <span t-if="line.vehicle_id" t-field="line.consignee"/>
+                    </td>
+                    <td>
+                        <span t-if="line.vehicle_id" t-field="line.container_num"/>
 
-					</td>
+                    </td>
+                    <td>
+                        <span t-if="line.vehicle_id" t-field="line.consignee"/>
 
-				</xpath>
-            <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
+                    </td>
+
+                </xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="attributes">
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[2]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[3]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[4]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[5]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
-            <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[6]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[6]" position="attributes">
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[7]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[8]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
                 <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[9]" position="attributes">
-                     <attribute name="style"> vertical-align: top; text-align: center !important;</attribute>
-				</xpath>
+                    <attribute name="style">vertical-align: top; text-align: center !important;</attribute>
+                </xpath>
 
-            <xpath expr="//span[@id='payment_terms_note_id']" position="after">
-                <p >Account Name : TAJ TRUCKING LIMITED</p>
-                <p>Account No. USD : 05233990011 </p>
-                <p >Swift Transfer : EUAFTZTZ</p>
-                 <p >Bank Name : BANK OF AFRICA TANZANIA</p>
-                  <p >Bank Address : NDC DEVELOPMENT HOUSE, OHIO STREET/KIVUKONI FRONT</p>
+                <xpath expr="//span[@id='payment_terms_note_id']" position="after">
+                    <p>Account Name : TAJ TRUCKING LIMITED</p>
+                    <p>Account No. USD : 05233990011</p>
+                    <p>Swift Transfer : EUAFTZTZ</p>
+                    <p>Bank Name : BANK OF AFRICA TANZANIA</p>
+                    <p>Bank Address : NDC DEVELOPMENT HOUSE, OHIO STREET/KIVUKONI FRONT</p>
 
-            </xpath>
-          
+                </xpath>
+
             </field>
-      </record>
+        </record>
     </data>
 </odoo>
