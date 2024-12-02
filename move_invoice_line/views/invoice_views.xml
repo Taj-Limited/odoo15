@@ -28,10 +28,10 @@
                 <xpath expr="//t[@t-set='tax_totals']" position='after'>
 
                     <tr class="border-black o_total">
-                        <td>
+                        <td class="col-6">
                             <strong>Total TSH</strong>
                         </td>
-                        <td class="text-right">
+                        <td class="text-end col-6">
                             <span t-field="o.amount_total_signed"/>
                         </td>
                     </tr>
