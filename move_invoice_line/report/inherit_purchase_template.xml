@@ -87,10 +87,10 @@
                                             <span t-field="line.order_id.sale_order_id.order_line[0].container_num"/>
                                         </td>
                                         <td id="product" style="width:100px;">
-                                            <span t-field="line.cargo_type"/>
+                                            <span t-field="line.rout"/>
                                         </td>
                                         <td id="product" style="width:100px;">
-                                            <span t-field="line.rout"/>
+                                            <span t-field="line.cargo_type"/>
                                         </td>
                                         <!--                                        <t t-if="'Cargo' not in line.analytic_tag_ids[0].name">-->
                                         <!--                                            <td id="product" style="width:100px;">-->
