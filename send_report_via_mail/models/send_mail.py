@@ -15,15 +15,17 @@ class ReportSendMail(models.TransientModel):
     to_date = fields.Date('To Date')
 
     def send_email_with_pdf_attach(self):
-        report_payable = self.env["account.report"].sudo().search([('id', '=', 8)])
+        report_payable = self.env["account.report"].sudo().search([('id', '=', 9)])
+        report_receivable = self.env["account.report"].sudo().search([('id', '=', 8)])
         # report_receivable = self.env["account.report"]
         payable_options = report_payable.get_options()
 
-        # receivable_options = report_receivable.get_options()
+        receivable_options = report_receivable.get_options()
         file_payable = report_payable.dispatch_report_action(payable_options, 'export_to_pdf')
         # generated_file_data = report.dispatch_report_action(options, file_generator)
         file_content = file_payable['file_content']
-        # file_receivable = report_receivable.get_pdf(receivable_options)
+        file_receivable = report_receivable.dispatch_report_action(receivable_options, 'export_to_pdf')
+        file_content_rec = file_receivable['file_content']
         ir_values_payable = {
             'name': 'aged payable.pdf',
             'type': 'binary',
@@ -32,16 +34,16 @@ class ReportSendMail(models.TransientModel):
             'mimetype': 'application/pdf',
             'res_model': 'account.move',
         }
-        # ir_values_receivable = {
-        #     'name': 'aged receivable.pdf',
-        #     'type': 'binary',
-        #     'datas': base64.b64encode(file_receivable),
-        #     'store_fname': base64.b64encode(file_receivable),
-        #     'mimetype': 'application/pdf',
-        #     'res_model': 'account.move',
-        # }
+        ir_values_receivable = {
+            'name': 'aged receivable.pdf',
+            'type': 'binary',
+            'datas': base64.b64encode(file_content_rec),
+            'store_fname': base64.b64encode(file_content_rec),
+            'mimetype': 'application/pdf',
+            'res_model': 'account.move',
+        }
         report_attachment_pay = self.env['ir.attachment'].sudo().create(ir_values_payable)
-        # report_attachment_rec = self.env['ir.attachment'].sudo().create(ir_values_receivable)
+        report_attachment_rec = self.env['ir.attachment'].sudo().create(ir_values_receivable)
         self.env.cr.commit()
         _logger = logging.getLogger(__name__)
         _logger.info(f"report_attachment_pay: {report_attachment_pay}")
@@ -52,8 +54,8 @@ class ReportSendMail(models.TransientModel):
              "subject": "Aged Reports",
              "body_html": "<p>Dear Mr. Ali,</p> <p>Please find the attached aged reports for today.</p> <p>best regards.</p>"})
         # mail.attachment_ids = [(6, 0, [report_attachment_pay.id, report_attachment_rec.id])]
-        # mail.attachment_ids = [report_attachment_pay.id, report_attachment_rec.id]
-        mail.attachment_ids = [report_attachment_pay.id]
+        mail.attachment_ids = [report_attachment_pay.id, report_attachment_rec.id]
+        # mail.attachment_ids = [report_attachment_pay.id]
         mail.send()
         # return mail
 
