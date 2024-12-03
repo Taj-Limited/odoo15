@@ -42,6 +42,10 @@ class PurchaseOrderInherit(models.Model):
                         truck = self.env['account.analytic.account'].sudo().search([('id', '=', int(key))])
                         if 'Truck' in truck.name:
                             line.truck_number = truck.name
+                        if 'Cargo' in truck.name:
+                            line.cargo_type = truck.name
+                        if 'DAR' in truck.name:
+                            line.rout = truck.name
                         # ids.append(truck.id)
                     # line.hide_analytic_account = ids
 
@@ -51,3 +55,5 @@ class PurchaseOrderLineInherit(models.Model):
 
     hide_analytic_account = fields.Many2many('account.analytic.account', 'analytic_purchase_line')
     truck_number = fields.Char('Truck Number')
+    cargo_type = fields.Char('Cargo Type')
+    rout = fields.Char('Rout')
