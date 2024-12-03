@@ -15,10 +15,10 @@ class ReportSendMail(models.TransientModel):
     to_date = fields.Date('To Date')
 
     def send_email_with_pdf_attach(self):
-        report_payable = self.env["account.aged.payable.report.handler"]
-        report_receivable = self.env["account.aged.receivable.report.handler"]
-        payable_options = report_payable._get_options()
-        receivable_options = report_receivable._get_options()
+        report_payable = self.env["account.report"]
+        report_receivable = self.env["account.report"]
+        payable_options = report_payable.get_options()
+        receivable_options = report_receivable.get_options()
         file_payable = report_payable.get_pdf(payable_options)
         file_receivable = report_receivable.get_pdf(receivable_options)
         ir_values_payable = {
@@ -408,7 +408,7 @@ class ReportSendMail(models.TransientModel):
         account_return_income_ids = ['500061', '500062', '500063', '500064', '500065', '500066', '500067', '500068',
                                      '500070', '500098', '500110', '500112', '50070', '50080', '510071', '511071',
                                      '512071', '500044', '500048', '500054', '500102', '500103', '500104', '500105',
-                                     '500111', '500113','500100', '500101', '500120', '500121']
+                                     '500111', '500113', '500100', '500101', '500120', '500121']
         account_going_of_revenue_ids = ['500037', '500038', '500039', '500041', '500042', '500045', '500046', '500047',
                                         '500049', '500050', '500053', '500055', '500056', '500058', '500059', '500069',
                                         '500096', '500044', '500048', '500054', '500102', '500103', '500104', '500105',
