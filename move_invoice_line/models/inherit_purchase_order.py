@@ -28,23 +28,26 @@ class PurchaseOrderInherit(models.Model):
                     rec_line.order_id = rec.order_id.id
                     rec_line.route_id = rec.id
 
-    # @api.onchange('order_line')
-    # def set_cargo_rout(self):
-    #     for rec in self:
-    #         for line in rec.order_line:
-    #             _logger.info(f'mammamamm')
-    #             if line.analytic_distribution:
-    #                 ids = []
-    #                 _logger.info(f'line.analytic_distribution{line.analytic_distribution}')
-    #                 _logger.info(f'line.analytic_distribution{line.analytic_distribution}')
-    #                 for key in line.analytic_distribution.keys():
-    #                     _logger.info(f'key::::{key}')
-    #                     truck = self.env['account.analytic.account'].sudo().search([('id', '=', int(key))])
-    #                     ids.append(truck.id)
-    #                 line.hide_analytic_account = ids
+    @api.onchange('order_line')
+    def set_cargo_rout(self):
+        for rec in self:
+            for line in rec.order_line:
+                _logger.info(f'mammamamm')
+                if line.analytic_distribution:
+                    ids = []
+                    _logger.info(f'line.analytic_distribution{line.analytic_distribution}')
+                    _logger.info(f'line.analytic_distribution{line.analytic_distribution}')
+                    for key in line.analytic_distribution.keys():
+                        _logger.info(f'key::::{key}')
+                        truck = self.env['account.analytic.account'].sudo().search([('id', '=', int(key))])
+                        if 'Truck' in truck.name:
+                            line.truck_number = truck.name
+                        # ids.append(truck.id)
+                    # line.hide_analytic_account = ids
 
 
 class PurchaseOrderLineInherit(models.Model):
     _inherit = 'purchase.order.line'
 
     hide_analytic_account = fields.Many2many('account.analytic.account', 'analytic_purchase_line')
+    truck_number = fields.Char('Truck Number')
