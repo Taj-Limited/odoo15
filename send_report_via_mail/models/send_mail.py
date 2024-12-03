@@ -18,14 +18,17 @@ class ReportSendMail(models.TransientModel):
         report_payable = self.env["account.report"].sudo().search([('id', '=', 8)])
         # report_receivable = self.env["account.report"]
         payable_options = report_payable.get_options()
+
         # receivable_options = report_receivable.get_options()
-        file_payable = report_payable.get_pdf(payable_options)
+        file_payable = report_payable.dispatch_report_action(payable_options, 'export_to_pdf')
+        # generated_file_data = report.dispatch_report_action(options, file_generator)
+        file_content = file_payable['file_content']
         # file_receivable = report_receivable.get_pdf(receivable_options)
         ir_values_payable = {
             'name': 'aged payable.pdf',
             'type': 'binary',
-            'datas': base64.b64encode(file_payable),
-            'store_fname': base64.b64encode(file_payable),
+            'datas': base64.b64encode(file_content),
+            'store_fname': base64.b64encode(file_content),
             'mimetype': 'application/pdf',
             'res_model': 'account.move',
         }
