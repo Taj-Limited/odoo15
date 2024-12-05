@@ -48,7 +48,7 @@ class ReportSendMail(models.TransientModel):
         _logger = logging.getLogger(__name__)
         _logger.info(f"report_attachment_pay: {report_attachment_pay}")
         # _logger.info(f"report_attachment_rec: {report_attachment_rec}")
-        mail = request.env['mail.mail'].sudo().create(
+        mail = self.env['mail.mail'].sudo().create(
             {'email_from': "odoobot@taj-limited.odoo.com", "email_to": "kreik.ali@gmail.com",
              "email_cc": "nour.m@madfoxme.com; Moustapha@madfoxme.com; souzan.s@madfoxme.com",
              "subject": "Aged Reports",
